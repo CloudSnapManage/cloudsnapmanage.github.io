@@ -7,9 +7,9 @@ import { Age } from '@/components/age';
 import { ProjectCard } from '@/components/project-card';
 
 // --- Static Data ---
-const GITHUB_USERNAME = 'vercel';
+const GITHUB_USERNAME = 'CloudSnapManage';
 const GITHUB_URL = `https://github.com/${GITHUB_USERNAME}`;
-const GITHUB_AVATAR_URL = `https://avatars.githubusercontent.com/u/14985020?v=4`;
+const GITHUB_AVATAR_URL = `https://github.com/CloudSnapManage.png`;
 const EMAIL = 'shrijan@example.com';
 
 const projects = [
@@ -54,12 +54,12 @@ export default function Home() {
             <div className="relative animate-in fade-in zoom-in duration-500">
                 <Image
                     src={GITHUB_AVATAR_URL}
-                    alt="Shrijan's GitHub Avatar"
+                    alt="Shrijan Paudel"
                     width={160}
                     height={160}
                     className="rounded-full border-4 border-primary/50 shadow-lg"
                     priority
-                    data-ai-hint="github avatar"
+                    data-ai-hint="Shrijan Paudel github avatar"
                 />
                 <div className="absolute bottom-2 right-2 bg-background/80 backdrop-blur-sm p-2 rounded-full shadow-md">
                     <Github className="h-6 w-6 text-primary" />
