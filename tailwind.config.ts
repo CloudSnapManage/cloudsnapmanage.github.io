@@ -96,7 +96,7 @@ export default {
         },
         'push-and-release': {
           '0%': { transform: 'scale(1)' },
-          '50%': { transform: 'scale(0.9)' },
+          '50%': { transform: 'scale(0.85)' },
           '100%': { transform: 'scale(1)' },
         },
       },
@@ -104,7 +104,7 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'coin-flip': 'coin-flip 0.7s ease-in-out',
-        'push-and-release': 'push-and-release 0.2s ease-out',
+        'push-and-release': 'push-and-release 0.4s ease-out',
       },
     },
   },
