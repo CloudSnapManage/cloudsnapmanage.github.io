@@ -58,7 +58,7 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-6">
 
             <section id="hero" className="py-20 md:py-32 flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="relative group animate-in fade-in zoom-in duration-500">
+              <Link href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="relative group animate-in fade-in zoom-in duration-500">
                 <div 
                   className={cn(
                     "absolute -inset-0.5 rounded-full bg-gradient-to-r from-primary/50 to-accent/50",
@@ -83,7 +83,7 @@ export default function Home() {
                       <Github className="h-6 w-6 text-primary transition-colors group-hover:text-yellow-accent" />
                   </div>
                 </div>
-              </div>
+              </Link>
 
               <div className="text-center md:text-left animate-in fade-in slide-in-from-bottom-10 duration-700">
                   <Badge variant="outline" className="mb-4 border-accent text-accent">Available for hire</Badge>
