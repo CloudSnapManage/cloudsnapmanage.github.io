@@ -7,6 +7,7 @@ import { Age } from '@/components/age';
 import { ProjectCard } from '@/components/project-card';
 import { TypingAnimation } from '@/components/typing-animation';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Starfield } from '@/components/starfield';
 
 // --- Static Data ---
 const GITHUB_USERNAME = 'CloudSnapManage';
@@ -40,6 +41,7 @@ const skills = [
 export default function Home() {
   return (
     <ScrollArea className="flex flex-col h-screen bg-transparent text-foreground">
+      <Starfield />
       <main className="flex-1">
         <div className="container mx-auto px-4 md:px-6">
 

@@ -10,6 +10,7 @@ type Star = {
 
 export function Starfield() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<Star[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationFrameId = useRef<number>();
@@ -27,8 +28,13 @@ export function Starfield() {
     if (!ctx) return;
 
     const onResize = () => {
+      // Use the scrollHeight of the parent of the parent of the canvas.
+      // This is hacky. A better solution would be to have the parent ScrollArea
+      // provide its scroll height through context.
+      const containerHeight = canvas.parentElement?.parentElement?.scrollHeight || window.innerHeight;
+
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.height = containerHeight;
       starsRef.current = [];
       for (let i = 0; i < STAR_COUNT; i++) {
         starsRef.current.push({
@@ -80,7 +86,7 @@ export function Starfield() {
             if (distToMouse < 200) { // Only attract if close enough
                 const angle = Math.atan2(dyToMouse, dxToMouse);
                 // The force is stronger the closer the star is to the cursor
-                const force = (200 - distToMouse) * 0.01;
+                const force = (200 - distToMouse) * 0.15;
                 star.x += Math.cos(angle) * force / k;
                 star.y += Math.sin(angle) * force / k;
             }
@@ -92,7 +98,7 @@ export function Starfield() {
           const dx = px - mouseX;
           const dy = py - mouseY;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const opacity = Math.min(0.8, 0.1 + Math.max(0, 0.7 - dist / 400));
+          const opacity = Math.min(0.8, 0.4 + Math.max(0, 0.7 - dist / 400));
 
           ctx.fillStyle = STAR_COLOR;
           ctx.globalAlpha = opacity;
@@ -123,9 +129,11 @@ export function Starfield() {
   }, []);
 
   return (
-    <canvas 
-      ref={canvasRef}
-      className="fixed top-0 left-0 -z-10 bg-transparent"
-    />
+    <div ref={containerRef} className="absolute top-0 left-0 -z-10 w-full h-full overflow-hidden">
+        <canvas 
+          ref={canvasRef}
+          className="absolute top-0 left-0 bg-transparent"
+        />
+    </div>
   );
 }
