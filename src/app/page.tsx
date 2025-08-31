@@ -43,7 +43,6 @@ const skills = [
 // --- End Static Data ---
 
 export default function Home() {
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
   const [scrollTop, setScrollTop] = useState(0);
 
   const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
@@ -53,7 +52,7 @@ export default function Home() {
   return (
     <>
       <Starfield scrollTop={scrollTop}/>
-      <ScrollArea className="flex flex-col h-screen bg-transparent text-foreground" onScroll={handleScroll} ref={scrollAreaRef}>
+      <ScrollArea className="flex flex-col h-screen bg-transparent text-foreground" onScroll={handleScroll}>
         <main className="flex-1 z-10">
           <div className="container mx-auto px-4 md:px-6">
 

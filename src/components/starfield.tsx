@@ -20,11 +20,12 @@ export function Starfield({ scrollTop }: StarfieldProps) {
   const animationFrameId = useRef<number>();
   const mouseMovingRef = useRef<boolean>(false);
   const mouseMoveTimeoutRef = useRef<NodeJS.Timeout>();
+  const lastScrollTopRef = useRef(0);
 
   const STAR_COUNT = 800;
   const STAR_COLOR = "#FFFFFF";
   const STAR_SIZE = 3;
-  const ATTRACTION_FORCE = 1.5;
+  const ATTRACTION_FORCE = 1.0; 
   const ATTRACTION_RADIUS = 150;
 
   useEffect(() => {
@@ -68,9 +69,17 @@ export function Starfield({ scrollTop }: StarfieldProps) {
       ctx.clearRect(0, 0, width, height);
       
       const { x: mouseX, y: mouseY } = mouseRef.current;
+      
+      const scrollDelta = scrollTop - lastScrollTopRef.current;
+      lastScrollTopRef.current = scrollTop;
+      
+      // The "warp speed" factor. Increase to make scrolling more impactful.
+      const scrollSpeedFactor = 0.5;
+      const velocity = 0.2 + Math.abs(scrollDelta) * scrollSpeedFactor;
+
 
       starsRef.current.forEach(star => {
-        star.z -= 0.2;
+        star.z -= velocity;
 
         if (star.z <= 0) {
           star.x = Math.random() * width - width / 2;
@@ -89,9 +98,9 @@ export function Starfield({ scrollTop }: StarfieldProps) {
             
             if (distToMouse < ATTRACTION_RADIUS) {
                 const angle = Math.atan2(dyToMouse, dxToMouse);
-                const force = ATTRACTION_FORCE;
-                star.x += Math.cos(angle) * force / k;
-                star.y += Math.sin(angle) * force / k;
+                const force = ATTRACTION_FORCE / (distToMouse / 50 + 1);
+                star.x += Math.cos(angle) * force;
+                star.y += Math.sin(angle) * force;
             }
         }
 
@@ -128,14 +137,13 @@ export function Starfield({ scrollTop }: StarfieldProps) {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, []);
+  }, [scrollTop]); // Rerun effect if scrollTop changes
 
   return (
     <div className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none">
         <canvas 
           ref={canvasRef}
           className="absolute top-0 left-0 bg-transparent"
-          style={{ transform: `translateY(${-scrollTop * 0.4}px)` }}
         />
     </div>
   );
