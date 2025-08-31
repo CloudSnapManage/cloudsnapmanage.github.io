@@ -1,3 +1,141 @@
+import Image from 'next/image';
+import Link from 'next/link';
+import { Github, Mail, Code, ArrowRight } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Age } from '@/components/age';
+import { ProjectCard } from '@/components/project-card';
+
+// --- Static Data ---
+const GITHUB_USERNAME = 'vercel';
+const GITHUB_URL = `https://github.com/${GITHUB_USERNAME}`;
+const GITHUB_AVATAR_URL = `https://avatars.githubusercontent.com/u/14985020?v=4`;
+const EMAIL = 'shrijan@example.com';
+
+const projects = [
+  {
+    title: "Project Alpha",
+    description: "A full-stack web application for project management, built with a modern tech stack to deliver a seamless user experience.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
+    liveUrl: "#",
+    repoUrl: "#"
+  },
+  {
+    title: "Project Beta",
+    description: "An e-commerce platform with a focus on performance and user engagement, featuring a robust backend and a sleek, responsive design.",
+    tech: ["React", "Node.js", "Express", "MongoDB", "Redux"],
+    liveUrl: "#",
+    repoUrl: "#"
+  },
+  {
+    title: "Project Gamma",
+    description: "A mobile-first social media app that connects users through shared interests, featuring real-time updates and an intuitive interface.",
+    tech: ["React Native", "Firebase", "GraphQL", "Apollo"],
+    liveUrl: "#",
+    repoUrl: "#"
+  }
+];
+
+const skills = [
+  "JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express",
+  "Python", "Django", "PostgreSQL", "MongoDB", "Prisma", "GraphQL", "Docker", "Git"
+];
+// --- End Static Data ---
+
 export default function Home() {
-  return <></>;
+  return (
+    <div className="flex flex-col min-h-dvh bg-background text-foreground">
+      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container h-14 flex items-center">
+            <Link href="/" className="flex items-center gap-2 font-bold text-lg transition-colors hover:text-primary">
+                <Code className="h-6 w-6 text-primary" />
+                Vibe Coder
+            </Link>
+        </div>
+      </header>
+      
+      <main className="flex-1">
+        <div className="container mx-auto px-4 md:px-6">
+
+          <section id="hero" className="py-20 md:py-32 flex flex-col md:flex-row items-center gap-8 md:gap-16">
+            <div className="relative animate-in fade-in zoom-in duration-500">
+                <Image
+                    src={GITHUB_AVATAR_URL}
+                    alt="Shrijan's GitHub Avatar"
+                    width={160}
+                    height={160}
+                    className="rounded-full border-4 border-primary/50 shadow-lg"
+                    priority
+                    data-ai-hint="github avatar"
+                />
+                <div className="absolute bottom-2 right-2 bg-background/80 backdrop-blur-sm p-2 rounded-full shadow-md">
+                    <Github className="h-6 w-6 text-primary" />
+                </div>
+            </div>
+            <div className="text-center md:text-left animate-in fade-in slide-in-from-bottom-10 duration-700">
+                <Badge variant="outline" className="mb-4 border-accent text-accent">Available for hire</Badge>
+                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">Hi, I'm Shrijan</h1>
+                <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-2xl">
+                    I'm a <Age />-year-old full-stack developer passionate about building beautiful and functional web applications.
+                </p>
+                <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <Button asChild size="lg">
+                        <Link href="#contact">Contact Me <Mail className="ml-2" /></Link>
+                    </Button>
+                    <Button asChild variant="secondary" size="lg">
+                        <Link href="#projects">View My Work <ArrowRight className="ml-2" /></Link>
+                    </Button>
+                </div>
+            </div>
+          </section>
+
+          <section id="projects" className="py-16 md:py-24 animate-in fade-in-0 slide-in-from-bottom-10 duration-700">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Featured Projects</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project, i) => (
+                <ProjectCard key={i} project={project} />
+              ))}
+            </div>
+          </section>
+
+          <section id="skills" className="py-16 md:py-24 bg-card/50 rounded-2xl animate-in fade-in-0 slide-in-from-bottom-10 duration-900">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">My Tech Stack</h2>
+            <div className="flex flex-wrap justify-center gap-3 px-4 md:gap-4">
+              {skills.map(skill => (
+                <Badge key={skill} className="text-base px-4 py-2 bg-background/50 border border-transparent transition-all hover:bg-primary/20 hover:text-primary hover:scale-105 hover:border-primary/50 cursor-default">
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </section>
+          
+          <section id="contact" className="text-center py-20 md:py-32 animate-in fade-in-0 slide-in-from-bottom-10 duration-1000">
+              <h2 className="text-3xl md:text-4xl font-bold">Get In Touch</h2>
+              <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
+                  I'm currently looking for new opportunities. Feel free to reach out via email or connect with me on GitHub.
+              </p>
+              <div className="mt-8 flex justify-center gap-4">
+                  <Button asChild variant="default" size="lg">
+                      <Link href={`mailto:${EMAIL}`}>
+                          <Mail className="mr-2" /> Email Me
+                      </Link>
+                  </Button>
+                  <Button asChild variant="secondary" size="lg">
+                      <Link href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+                          <Github className="mr-2" /> GitHub
+                      </Link>
+                  </Button>
+              </div>
+          </section>
+
+        </div>
+      </main>
+
+      <footer className="border-t border-border/40">
+        <div className="container py-6 text-center text-muted-foreground text-sm">
+            <p>&copy; {new Date().getFullYear()} Shrijan. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  )
 }
