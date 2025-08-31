@@ -70,7 +70,7 @@ export function Starfield() {
           const dx = px - mouseX;
           const dy = py - mouseY;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const opacity = 0.1 + Math.max(0, 0.9 - dist / 200);
+          const opacity = 0.5 + Math.max(0, 0.5 - dist / 200);
 
           ctx.fillStyle = STAR_COLOR;
           ctx.globalAlpha = opacity;
