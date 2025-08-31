@@ -17,8 +17,6 @@ export function Starfield() {
   const STAR_COUNT = 800;
   const STAR_COLOR = "#FFFFFF";
   const STAR_SIZE = 3;
-  const STAR_MIN_SCALE = 0.2;
-  const OVERFLOW_THRESHOLD = 50;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -34,7 +32,7 @@ export function Starfield() {
         starsRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          z: Math.random() * canvas.width
+          z: Math.random() * canvas.width,
         });
       }
     };
@@ -44,7 +42,7 @@ export function Starfield() {
     };
 
     const animate = () => {
-      if(!ctx) return;
+      if (!ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const { x: mouseX, y: mouseY } = mouseRef.current;
 
@@ -61,9 +59,8 @@ export function Starfield() {
 
         // 3D to 2D projection
         const k = 128 / star.z;
-        const px = star.x * k + (canvas.width / 2);
-        const py = star.y * k + (canvas.height / 2);
-
+        const px = star.x * k + (canvas.width / 2) - (k * canvas.width / 2);
+        const py = star.y * k + (canvas.height / 2) - (k * canvas.height / 2);
 
         if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
           const size = (1 - star.z / canvas.width) * STAR_SIZE;
@@ -91,8 +88,8 @@ export function Starfield() {
     return () => {
       window.removeEventListener('resize', onResize, false);
       document.removeEventListener('mousemove', onMouseMove);
-      if(animationFrameId.current) {
-          cancelAnimationFrame(animationFrameId.current);
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
       }
     };
   }, []);
