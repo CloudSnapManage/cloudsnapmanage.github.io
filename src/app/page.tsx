@@ -1,3 +1,6 @@
+
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Github, Mail, ArrowRight } from 'lucide-react';
@@ -8,6 +11,7 @@ import { ProjectCard } from '@/components/project-card';
 import { TypingAnimation } from '@/components/typing-animation';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Starfield } from '@/components/starfield';
+import { useRef, useState } from 'react';
 
 // --- Static Data ---
 const GITHUB_USERNAME = 'CloudSnapManage';
@@ -39,10 +43,17 @@ const skills = [
 // --- End Static Data ---
 
 export default function Home() {
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const [scrollTop, setScrollTop] = useState(0);
+
+  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    setScrollTop(event.currentTarget.scrollTop);
+  };
+
   return (
-    <ScrollArea className="flex flex-col h-screen bg-transparent text-foreground">
-      <Starfield />
-      <main className="flex-1">
+    <ScrollArea className="flex flex-col h-screen bg-transparent text-foreground" onScroll={handleScroll} ref={scrollAreaRef}>
+      <Starfield scrollTop={scrollTop}/>
+      <main className="flex-1 z-10">
         <div className="container mx-auto px-4 md:px-6">
 
           <section id="hero" className="py-20 md:py-32 flex flex-col md:flex-row items-center gap-8 md:gap-16">
@@ -124,7 +135,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="border-t border-border/40">
+      <footer className="border-t border-border/40 z-10">
         <div className="container py-6 text-center text-muted-foreground text-sm">
             <p>&copy; {new Date().getFullYear()} Shrijan. All rights reserved.</p>
         </div>

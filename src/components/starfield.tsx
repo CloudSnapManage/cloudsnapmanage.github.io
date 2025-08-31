@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useRef, useEffect } from 'react';
@@ -8,9 +9,12 @@ type Star = {
   z: number;
 };
 
-export function Starfield() {
+interface StarfieldProps {
+  scrollTop: number;
+}
+
+export function Starfield({ scrollTop }: StarfieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<Star[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationFrameId = useRef<number>();
@@ -28,19 +32,25 @@ export function Starfield() {
     if (!ctx) return;
 
     const onResize = () => {
-      // Use the scrollHeight of the parent of the parent of the canvas.
-      // This is hacky. A better solution would be to have the parent ScrollArea
-      // provide its scroll height through context.
-      const containerHeight = canvas.parentElement?.parentElement?.scrollHeight || window.innerHeight;
+      const container = canvas.parentElement;
+      if (!container) return;
 
-      canvas.width = window.innerWidth;
-      canvas.height = containerHeight;
+      const dpr = window.devicePixelRatio || 1;
+      const rect = container.getBoundingClientRect();
+      
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = `${rect.height}px`;
+
+      ctx.scale(dpr, dpr);
+      
       starsRef.current = [];
       for (let i = 0; i < STAR_COUNT; i++) {
         starsRef.current.push({
-          x: Math.random() * 2 * canvas.width - canvas.width,
-          y: Math.random() * 2 * canvas.height - canvas.height,
-          z: Math.random() * canvas.width,
+          x: Math.random() * 2 * canvas.offsetWidth - canvas.offsetWidth,
+          y: Math.random() * 2 * canvas.offsetHeight - canvas.offsetHeight,
+          z: Math.random() * canvas.offsetWidth,
         });
       }
     };
@@ -57,48 +67,43 @@ export function Starfield() {
     };
 
     const animate = () => {
-      if (!ctx) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (!ctx || !canvas) return;
+      ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+      
       const { x: mouseX, y: mouseY } = mouseRef.current;
 
       starsRef.current.forEach(star => {
-        // Move star
         star.z -= 0.2;
 
-        // Recycle star
         if (star.z <= 0) {
-          star.x = Math.random() * 2 * canvas.width - canvas.width;
-          star.y = Math.random() * 2 * canvas.height - canvas.height;
-          star.z = canvas.width;
+          star.x = Math.random() * 2 * canvas.offsetWidth - canvas.offsetWidth;
+          star.y = Math.random() * 2 * canvas.offsetHeight - canvas.offsetHeight;
+          star.z = canvas.offsetWidth;
         }
 
-        // 3D to 2D projection
         const k = 128 / star.z;
-        const px = star.x * k + canvas.width / 2;
-        const py = star.y * k + canvas.height / 2;
+        const px = star.x * k + canvas.offsetWidth / 2;
+        const py = star.y * k + canvas.offsetHeight / 2 - scrollTop; // Apply scroll offset
         
-        // Attraction to cursor
         if (mouseMovingRef.current) {
             const dxToMouse = mouseX - px;
-            const dyToMouse = mouseY - py;
+            const dyToMouse = (mouseY - py) + scrollTop; // Adjust mouse Y for scroll
             const distToMouse = Math.sqrt(dxToMouse * dxToMouse + dyToMouse * dyToMouse);
             
-            if (distToMouse < 200) { // Only attract if close enough
+            if (distToMouse < 200) {
                 const angle = Math.atan2(dyToMouse, dxToMouse);
-                // The force is stronger the closer the star is to the cursor
-                const force = (200 - distToMouse) * 0.05;
+                const force = (200 - distToMouse) * 0.01; 
                 star.x += Math.cos(angle) * force / k;
                 star.y += Math.sin(angle) * force / k;
             }
         }
 
-
-        if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
-          const size = (1 - star.z / canvas.width) * STAR_SIZE;
+        if (px >= 0 && px <= canvas.offsetWidth && py >= 0 && py <= canvas.offsetHeight) {
+          const size = (1 - star.z / canvas.offsetWidth) * STAR_SIZE;
           const dx = px - mouseX;
-          const dy = py - mouseY;
+          const dy = py - (mouseY + scrollTop);
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const opacity = Math.min(0.8, 0.4 + Math.max(0, 0.7 - dist / 400));
+          const opacity = Math.min(1, 0.5 + Math.max(0, 0.7 - dist / 400));
 
           ctx.fillStyle = STAR_COLOR;
           ctx.globalAlpha = opacity;
@@ -113,7 +118,7 @@ export function Starfield() {
 
     window.addEventListener('resize', onResize, false);
     document.addEventListener('mousemove', onMouseMove);
-    onResize(); // Initial setup
+    onResize();
     animate();
 
     return () => {
@@ -126,10 +131,10 @@ export function Starfield() {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, []);
+  }, [scrollTop]); // Rerun effect when scrollTop changes
 
   return (
-    <div ref={containerRef} className="absolute top-0 left-0 -z-10 w-full h-full overflow-hidden">
+    <div className="absolute top-0 left-0 w-full h-full -z-10">
         <canvas 
           ref={canvasRef}
           className="absolute top-0 left-0 bg-transparent"
