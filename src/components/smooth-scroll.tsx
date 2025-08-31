@@ -19,7 +19,6 @@ export function SmoothScroll({ children, className, onScroll }: SmoothScrollProp
   const contentRef = useRef<HTMLDivElement>(null);
   const [isTouch, setIsTouch] = useState<boolean | null>(null);
 
-
   // Store scroll positions and animation frame ID in refs to persist between renders
   const scrollData = useRef({
     current: 0,
@@ -32,7 +31,6 @@ export function SmoothScroll({ children, className, onScroll }: SmoothScrollProp
     const touchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     setIsTouch(touchDevice);
   }, []);
-
 
   const handleWheel = useCallback((e: WheelEvent) => {
     e.preventDefault(); // Prevent default browser scroll
@@ -67,7 +65,6 @@ export function SmoothScroll({ children, className, onScroll }: SmoothScrollProp
     // Continue the animation loop
     scrollData.current.animationFrameId = requestAnimationFrame(smoothScroll);
   }, [onScroll]);
-
 
   useEffect(() => {
     // If it's a touch device or check hasn't run, don't initialize custom scrolling
