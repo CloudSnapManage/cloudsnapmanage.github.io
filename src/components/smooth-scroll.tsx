@@ -68,7 +68,7 @@ export function SmoothScroll({ children, className, onScroll }: SmoothScrollProp
 
   useEffect(() => {
     // If it's a touch device or check hasn't run, don't initialize custom scrolling
-    if (isTouch) return;
+    if (isTouch === true || isTouch === null) return;
 
     const container = containerRef.current;
     if (!container) return;
@@ -87,7 +87,7 @@ export function SmoothScroll({ children, className, onScroll }: SmoothScrollProp
   }, [isTouch, handleWheel, smoothScroll]);
   
   // While we're checking for touch, or if it is a touch device, use native scrolling.
-  if (isTouch !== false) {
+  if (isTouch === true || isTouch === null) {
       return (
           <div className="w-full h-full overflow-y-auto" onScroll={(e) => onScroll && onScroll(e.currentTarget.scrollTop)}>
               {children}
