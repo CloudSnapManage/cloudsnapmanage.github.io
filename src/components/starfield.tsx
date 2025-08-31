@@ -32,8 +32,8 @@ export function Starfield() {
       starsRef.current = [];
       for (let i = 0; i < STAR_COUNT; i++) {
         starsRef.current.push({
-          x: (Math.random() - 0.5) * canvas.width,
-          y: (Math.random() - 0.5) * canvas.height,
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
           z: Math.random() * canvas.width
         });
       }
@@ -54,8 +54,8 @@ export function Starfield() {
 
         // Recycle star
         if (star.z <= 0) {
-          star.x = (Math.random() - 0.5) * canvas.width;
-          star.y = (Math.random() - 0.5) * canvas.height;
+          star.x = Math.random() * canvas.width;
+          star.y = Math.random() * canvas.height;
           star.z = canvas.width;
         }
 
@@ -70,7 +70,7 @@ export function Starfield() {
           const dx = px - mouseX;
           const dy = py - mouseY;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const opacity = Math.max(0, 1 - dist / 200);
+          const opacity = 0.1 + Math.max(0, 0.9 - dist / 200);
 
           ctx.fillStyle = STAR_COLOR;
           ctx.globalAlpha = opacity;
