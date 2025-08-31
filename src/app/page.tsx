@@ -46,6 +46,7 @@ const skills = [
 export default function Home() {
   const [scrollTop, setScrollTop] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
+  const [isPressed, setIsPressed] = useState(false);
 
   const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
     setScrollTop(event.currentTarget.scrollTop);
@@ -53,13 +54,17 @@ export default function Home() {
 
   const handleAvatarClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    if (isFlipping) return;
+    if (isFlipping || isPressed) return;
 
-    setIsFlipping(true);
+    setIsPressed(true);
     setTimeout(() => {
-      window.open(GITHUB_URL, '_blank');
-      setIsFlipping(false);
-    }, 700); // Duration of the animation
+      setIsPressed(false);
+      setIsFlipping(true);
+      setTimeout(() => {
+        window.open(GITHUB_URL, '_blank');
+        setIsFlipping(false);
+      }, 700); // coin-flip duration
+    }, 200); // push-and-release duration
   };
 
   return (
@@ -83,7 +88,8 @@ export default function Home() {
                 />
                 <div className={cn(
                     "relative rounded-full p-1 bg-background transition-transform duration-700",
-                    isFlipping && "animate-coin-flip"
+                    isFlipping && "animate-coin-flip",
+                    isPressed && "animate-push-and-release"
                   )}
                   style={{ transformStyle: 'preserve-3d' }}
                 >
@@ -137,7 +143,7 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">My Tech Stack</h2>
               <div className="flex flex-wrap justify-center gap-3 px-4 md:gap-4">
                 {skills.map(skill => (
-                  <Badge key={skill} className="text-base px-4 py-2 bg-background/50 border border-transparent transition-all hover:bg-primary/20 hover:text-primary hover:scale-105 hover:border-primary/50 cursor-default">
+                  <Badge key={skill} className="text-base px-4 py-2 bg-background/50 border border-transparent transition-all hover:bg-primary/20 hover:text-primary hover:scale-105 hover:border-primary/50">
                     {skill}
                   </Badge>
                 ))}

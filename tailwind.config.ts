@@ -93,12 +93,18 @@ export default {
         'coin-flip': {
           '0%': { transform: 'rotateY(0deg)' },
           '100%': { transform: 'rotateY(360deg)' },
-        }
+        },
+        'push-and-release': {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(0.92)' },
+          '100%': { transform: 'scale(1)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'coin-flip': 'coin-flip 0.7s ease-in-out',
+        'push-and-release': 'push-and-release 0.2s ease-out',
       },
     },
   },
