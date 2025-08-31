@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 // A sample birthdate for Shrijan.
-const BIRTH_DATE = "2000-05-15";
+const BIRTH_DATE = "2009-06-17";
 
 export function Age() {
   const [age, setAge] = useState<number | null>(null);
