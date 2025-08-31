@@ -65,6 +65,7 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        'yellow-accent': 'hsl(var(--yellow-accent))',
       },
       borderRadius: {
         lg: 'var(--radius)',

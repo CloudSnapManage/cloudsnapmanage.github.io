@@ -80,7 +80,7 @@ export default function Home() {
                       data-ai-hint="Shrijan Paudel github avatar"
                   />
                   <div className="absolute bottom-2 right-2 bg-background/80 backdrop-blur-sm p-2 rounded-full shadow-md">
-                      <Github className="h-6 w-6 text-primary" />
+                      <Github className="h-6 w-6 text-primary transition-colors group-hover:text-yellow-accent" />
                   </div>
                 </div>
               </div>
