@@ -13,6 +13,8 @@ export function Starfield() {
   const starsRef = useRef<Star[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationFrameId = useRef<number>();
+  const mouseMovingRef = useRef<boolean>(false);
+  const mouseMoveTimeoutRef = useRef<NodeJS.Timeout>();
 
   const STAR_COUNT = 800;
   const STAR_COLOR = "#FFFFFF";
@@ -39,6 +41,13 @@ export function Starfield() {
 
     const onMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
+      mouseMovingRef.current = true;
+      if (mouseMoveTimeoutRef.current) {
+        clearTimeout(mouseMoveTimeoutRef.current);
+      }
+      mouseMoveTimeoutRef.current = setTimeout(() => {
+        mouseMovingRef.current = false;
+      }, 100);
     };
 
     const animate = () => {
@@ -59,15 +68,31 @@ export function Starfield() {
 
         // 3D to 2D projection
         const k = 128 / star.z;
-        const px = star.x * k + (canvas.width / 2) - (k * canvas.width / 2);
-        const py = star.y * k + (canvas.height / 2) - (k * canvas.height / 2);
+        const px = star.x * k + (canvas.width / 2);
+        const py = star.y * k + (canvas.height / 2);
+        
+        // Attraction to cursor
+        if (mouseMovingRef.current) {
+            const dxToMouse = mouseX - px;
+            const dyToMouse = mouseY - py;
+            const distToMouse = Math.sqrt(dxToMouse * dxToMouse + dyToMouse * dyToMouse);
+            
+            if (distToMouse < 200) { // Only attract if close enough
+                const angle = Math.atan2(dyToMouse, dxToMouse);
+                // The force is stronger the closer the star is to the cursor
+                const force = (200 - distToMouse) * 0.001;
+                star.x += Math.cos(angle) * force / k;
+                star.y += Math.sin(angle) * force / k;
+            }
+        }
+
 
         if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
           const size = (1 - star.z / canvas.width) * STAR_SIZE;
           const dx = px - mouseX;
           const dy = py - mouseY;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const opacity = 0.5 + Math.max(0, 0.5 - dist / 200);
+          const opacity = Math.min(0.8, 0.1 + Math.max(0, 0.7 - dist / 400));
 
           ctx.fillStyle = STAR_COLOR;
           ctx.globalAlpha = opacity;
@@ -88,6 +113,9 @@ export function Starfield() {
     return () => {
       window.removeEventListener('resize', onResize, false);
       document.removeEventListener('mousemove', onMouseMove);
+      if (mouseMoveTimeoutRef.current) {
+        clearTimeout(mouseMoveTimeoutRef.current);
+      }
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
       }
@@ -97,7 +125,7 @@ export function Starfield() {
   return (
     <canvas 
       ref={canvasRef}
-      className="fixed top-0 left-0 -z-10 bg-background"
+      className="fixed top-0 left-0 -z-10 bg-transparent"
     />
   );
 }
