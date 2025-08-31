@@ -86,7 +86,7 @@ export function Starfield() {
             if (distToMouse < 200) { // Only attract if close enough
                 const angle = Math.atan2(dyToMouse, dxToMouse);
                 // The force is stronger the closer the star is to the cursor
-                const force = (200 - distToMouse) * 0.15;
+                const force = (200 - distToMouse) * 0.05;
                 star.x += Math.cos(angle) * force / k;
                 star.y += Math.sin(angle) * force / k;
             }
