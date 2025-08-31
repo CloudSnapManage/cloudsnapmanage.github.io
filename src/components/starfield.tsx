@@ -32,25 +32,17 @@ export function Starfield({ scrollTop }: StarfieldProps) {
     if (!ctx) return;
 
     const onResize = () => {
-      const container = canvas.parentElement;
-      if (!container) return;
-
       const dpr = window.devicePixelRatio || 1;
-      const rect = container.getBoundingClientRect();
-      
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      
-      // We don't need to set style width/height for fixed position
-      
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
       ctx.scale(dpr, dpr);
       
       starsRef.current = [];
       for (let i = 0; i < STAR_COUNT; i++) {
         starsRef.current.push({
-          x: Math.random() * canvas.offsetWidth,
-          y: Math.random() * canvas.offsetHeight,
-          z: Math.random() * canvas.offsetWidth,
+          x: Math.random() * window.innerWidth - window.innerWidth / 2,
+          y: Math.random() * window.innerHeight - window.innerHeight / 2,
+          z: Math.random() * window.innerWidth,
         });
       }
     };
@@ -68,7 +60,7 @@ export function Starfield({ scrollTop }: StarfieldProps) {
 
     const animate = () => {
       if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
       
       const { x: mouseX, y: mouseY } = mouseRef.current;
 
@@ -76,14 +68,14 @@ export function Starfield({ scrollTop }: StarfieldProps) {
         star.z -= 0.2;
 
         if (star.z <= 0) {
-          star.x = Math.random() * canvas.offsetWidth;
-          star.y = Math.random() * canvas.offsetHeight;
-          star.z = canvas.offsetWidth;
+          star.x = Math.random() * window.innerWidth - window.innerWidth / 2;
+          star.y = Math.random() * window.innerHeight - window.innerHeight / 2;
+          star.z = window.innerWidth;
         }
 
         const k = 128 / star.z;
-        const px = star.x * k + canvas.offsetWidth / 2;
-        const py = star.y * k + canvas.offsetHeight / 2;
+        const px = star.x * k + window.innerWidth / 2;
+        const py = star.y * k + window.innerHeight / 2;
         
         if (mouseMovingRef.current) {
             const dxToMouse = mouseX - px;
@@ -92,14 +84,14 @@ export function Starfield({ scrollTop }: StarfieldProps) {
             
             if (distToMouse < 200) {
                 const angle = Math.atan2(dyToMouse, dxToMouse);
-                const force = (200 - distToMouse) * 0.02; 
+                const force = (200 - distToMouse) * 0.005; // Reduced attraction
                 star.x += Math.cos(angle) * force / k;
                 star.y += Math.sin(angle) * force / k;
             }
         }
 
-        if (px >= 0 && px <= canvas.offsetWidth && py >= 0 && py <= canvas.offsetHeight) {
-          const size = (1 - star.z / canvas.offsetWidth) * STAR_SIZE;
+        if (px >= 0 && px <= window.innerWidth && py >= 0 && py <= window.innerHeight) {
+          const size = (1 - star.z / window.innerWidth) * STAR_SIZE;
           const dx = px - mouseX;
           const dy = py - mouseY;
           const dist = Math.sqrt(dx * dx + dy * dy);
