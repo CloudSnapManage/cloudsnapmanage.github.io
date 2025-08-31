@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Age } from '@/components/age';
 import { ProjectCard } from '@/components/project-card';
 import { TypingAnimation } from '@/components/typing-animation';
-import { Starfield } from '@/components/starfield';
 
 // --- Static Data ---
 const GITHUB_USERNAME = 'CloudSnapManage';
@@ -39,8 +38,7 @@ const skills = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-dvh bg-background text-foreground">
-      <Starfield />
+    <div className="flex flex-col min-h-dvh bg-transparent text-foreground">
       <main className="flex-1">
         <div className="container mx-auto px-4 md:px-6">
 

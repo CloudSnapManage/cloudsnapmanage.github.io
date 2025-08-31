@@ -5,14 +5,20 @@ import React, { useRef, useEffect } from 'react';
 type Star = {
   x: number;
   y: number;
-  radius: number;
-  opacity: number;
-  vx: number;
-  vy: number;
+  z: number;
 };
 
 export function Starfield() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const starsRef = useRef<Star[]>([]);
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const animationFrameId = useRef<number>();
+
+  const STAR_COUNT = 800;
+  const STAR_COLOR = "#FFFFFF";
+  const STAR_SIZE = 3;
+  const STAR_MIN_SCALE = 0.2;
+  const OVERFLOW_THRESHOLD = 50;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -20,82 +26,79 @@ export function Starfield() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let stars: Star[] = [];
-    let animationFrameId: number;
-    let mouse = { x: 0, y: 0 };
-
-    const resizeCanvas = () => {
+    const onResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      stars = [];
-      const STAR_COUNT = Math.floor((canvas.width * canvas.height) / 5000);
+      starsRef.current = [];
       for (let i = 0; i < STAR_COUNT; i++) {
-        stars.push({
+        starsRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          radius: Math.random() * 1.2 + 0.5,
-          opacity: Math.random() * 0.5 + 0.2,
-          vx: (Math.random() - 0.5) * 0.1,
-          vy: (Math.random() - 0.5) * 0.1,
+          z: Math.random() * canvas.width
         });
       }
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+    const onMouseMove = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
     };
-    
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      stars.forEach(star => {
-        // Interaction with mouse
-        const dx = star.x - mouse.x;
-        const dy = star.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        
-        let targetOpacity = star.opacity;
-        if (dist < 150) {
-          targetOpacity = Math.min(1, star.opacity + (1 - dist / 150) * 0.8);
-          star.x += dx / dist * 0.5;
-          star.y += dy / dist * 0.5;
+      const { x: mouseX, y: mouseY } = mouseRef.current;
+
+      starsRef.current.forEach(star => {
+        // Move star
+        star.z -= 0.2;
+
+        // Recycle star
+        if (star.z <= 0) {
+          star.x = Math.random() * canvas.width;
+          star.y = Math.random() * canvas.height;
+          star.z = canvas.width;
         }
 
-        // Drifting
-        star.x += star.vx;
-        star.y += star.vy;
+        // 3D to 2D projection
+        const k = canvas.width / star.z;
+        const px = star.x * k + (canvas.width / 2);
+        const py = star.y * k + (canvas.height / 2);
 
-        // Wall bouncing
-        if (star.x < 0 || star.x > canvas.width) star.vx *= -1;
-        if (star.y < 0 || star.y > canvas.height) star.vy *= -1;
-        
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${targetOpacity})`;
-        ctx.fill();
+        if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
+          const size = (1 - star.z / canvas.width) * STAR_SIZE;
+          const dx = px - mouseX;
+          const dy = py - mouseY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const opacity = Math.max(0, 1 - dist / 200);
+
+          ctx.fillStyle = STAR_COLOR;
+          ctx.globalAlpha = opacity;
+          ctx.beginPath();
+          ctx.arc(px, py, size / 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
       });
-
-      animationFrameId = requestAnimationFrame(animate);
+      
+      animationFrameId.current = requestAnimationFrame(animate);
     };
 
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('mousemove', handleMouseMove);
-
-    resizeCanvas();
+    window.addEventListener('resize', onResize, false);
+    document.addEventListener('mousemove', onMouseMove);
+    onResize(); // Initial setup
     animate();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', onResize, false);
+      document.removeEventListener('mousemove', onMouseMove);
+      if(animationFrameId.current) {
+          cancelAnimationFrame(animationFrameId.current);
+      }
     };
   }, []);
 
   return (
     <canvas 
-      ref={canvasRef} 
-      className="fixed top-0 left-0 -z-10"
+      ref={canvasRef}
+      className="fixed top-0 left-0 -z-10 bg-background"
     />
   );
 }
