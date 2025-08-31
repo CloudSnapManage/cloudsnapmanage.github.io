@@ -10,7 +10,7 @@ import { ProjectCard } from '@/components/project-card';
 const GITHUB_USERNAME = 'CloudSnapManage';
 const GITHUB_URL = `https://github.com/${GITHUB_USERNAME}`;
 const GITHUB_AVATAR_URL = `https://github.com/CloudSnapManage.png`;
-const EMAIL = 'shrijan@example.com';
+const EMAIL = 'cloudsnapmanage@gmail.com';
 
 const projects = [
   {
