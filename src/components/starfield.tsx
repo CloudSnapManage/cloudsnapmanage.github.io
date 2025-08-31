@@ -32,8 +32,8 @@ export function Starfield() {
       starsRef.current = [];
       for (let i = 0; i < STAR_COUNT; i++) {
         starsRef.current.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
+          x: Math.random() * 2 * canvas.width - canvas.width,
+          y: Math.random() * 2 * canvas.height - canvas.height,
           z: Math.random() * canvas.width,
         });
       }
@@ -61,15 +61,15 @@ export function Starfield() {
 
         // Recycle star
         if (star.z <= 0) {
-          star.x = Math.random() * canvas.width;
-          star.y = Math.random() * canvas.height;
+          star.x = Math.random() * 2 * canvas.width - canvas.width;
+          star.y = Math.random() * 2 * canvas.height - canvas.height;
           star.z = canvas.width;
         }
 
         // 3D to 2D projection
         const k = 128 / star.z;
-        const px = star.x * k + (canvas.width / 2);
-        const py = star.y * k + (canvas.height / 2);
+        const px = star.x * k + canvas.width / 2;
+        const py = star.y * k + canvas.height / 2;
         
         // Attraction to cursor
         if (mouseMovingRef.current) {
