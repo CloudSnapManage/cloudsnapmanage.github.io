@@ -24,7 +24,8 @@ export function Starfield({ scrollTop }: StarfieldProps) {
   const STAR_COUNT = 800;
   const STAR_COLOR = "#FFFFFF";
   const STAR_SIZE = 3;
-  const ATTRACTION_FORCE = 0.02; 
+  const ATTRACTION_FORCE = 1.5;
+  const ATTRACTION_RADIUS = 150;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -36,6 +37,8 @@ export function Starfield({ scrollTop }: StarfieldProps) {
       const dpr = window.devicePixelRatio || 1;
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
       ctx.scale(dpr, dpr);
       
       starsRef.current = [];
@@ -84,9 +87,9 @@ export function Starfield({ scrollTop }: StarfieldProps) {
             const dyToMouse = mouseY - py;
             const distToMouse = Math.sqrt(dxToMouse * dxToMouse + dyToMouse * dyToMouse);
             
-            if (distToMouse < 200) {
+            if (distToMouse < ATTRACTION_RADIUS) {
                 const angle = Math.atan2(dyToMouse, dxToMouse);
-                const force = (200 - distToMouse) * ATTRACTION_FORCE;
+                const force = ATTRACTION_FORCE;
                 star.x += Math.cos(angle) * force / k;
                 star.y += Math.sin(angle) * force / k;
             }
@@ -131,7 +134,7 @@ export function Starfield({ scrollTop }: StarfieldProps) {
     <div className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none">
         <canvas 
           ref={canvasRef}
-          className="absolute top-0 left-0 w-full h-full bg-transparent"
+          className="absolute top-0 left-0 bg-transparent"
           style={{ transform: `translateY(${-scrollTop * 0.4}px)` }}
         />
     </div>
