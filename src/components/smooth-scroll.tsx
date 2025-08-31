@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { cn } from '@/lib/utils';
 
 // --- Configuration ---
@@ -17,6 +17,8 @@ interface SmoothScrollProps {
 export function SmoothScroll({ children, className, onScroll }: SmoothScrollProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [isTouch, setIsTouch] = useState<boolean | null>(null);
+
 
   // Store scroll positions and animation frame ID in refs to persist between renders
   const scrollData = useRef({
@@ -24,6 +26,13 @@ export function SmoothScroll({ children, className, onScroll }: SmoothScrollProp
     target: 0,
     animationFrameId: 0,
   });
+
+  useEffect(() => {
+    // This check runs only on the client.
+    const touchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    setIsTouch(touchDevice);
+  }, []);
+
 
   const handleWheel = useCallback((e: WheelEvent) => {
     e.preventDefault(); // Prevent default browser scroll
@@ -61,6 +70,9 @@ export function SmoothScroll({ children, className, onScroll }: SmoothScrollProp
 
 
   useEffect(() => {
+    // If it's a touch device or check hasn't run, don't initialize custom scrolling
+    if (isTouch) return;
+
     const container = containerRef.current;
     if (!container) return;
     
@@ -75,7 +87,16 @@ export function SmoothScroll({ children, className, onScroll }: SmoothScrollProp
       container.removeEventListener('wheel', handleWheel);
       cancelAnimationFrame(scrollData.current.animationFrameId);
     };
-  }, [handleWheel, smoothScroll]);
+  }, [isTouch, handleWheel, smoothScroll]);
+  
+  // While we're checking for touch, or if it is a touch device, use native scrolling.
+  if (isTouch !== false) {
+      return (
+          <div className="w-full h-full overflow-y-auto" onScroll={(e) => onScroll && onScroll(e.currentTarget.scrollTop)}>
+              {children}
+          </div>
+      )
+  }
 
   return (
     <div
