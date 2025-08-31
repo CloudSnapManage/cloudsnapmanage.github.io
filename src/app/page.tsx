@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Age } from '@/components/age';
 import { ProjectCard } from '@/components/project-card';
+import { TypingAnimation } from '@/components/typing-animation';
 
 // --- Static Data ---
 const GITHUB_USERNAME = 'CloudSnapManage';
@@ -58,7 +59,7 @@ export default function Home() {
             </div>
             <div className="text-center md:text-left animate-in fade-in slide-in-from-bottom-10 duration-700">
                 <Badge variant="outline" className="mb-4 border-accent text-accent">Available for hire</Badge>
-                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">Hi, I'm Shrijan</h1>
+                <TypingAnimation text="Hi, I'm Shrijan" className="text-4xl md:text-5xl font-extrabold tracking-tight" />
                 <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
                   I’m a <span className="text-primary font-semibold"><Age />-year-old</span> self-taught developer from Nepal,
                   exploring the world of code with curiosity and creativity.
