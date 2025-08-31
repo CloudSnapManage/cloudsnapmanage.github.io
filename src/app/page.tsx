@@ -38,15 +38,6 @@ const skills = [
 export default function Home() {
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container h-14 flex items-center">
-            <Link href="/" className="flex items-center gap-2 font-bold text-lg transition-colors hover:text-primary">
-                <Code className="h-6 w-6 text-primary" />
-                Vibe Coder
-            </Link>
-        </div>
-      </header>
-      
       <main className="flex-1">
         <div className="container mx-auto px-4 md:px-6">
 
