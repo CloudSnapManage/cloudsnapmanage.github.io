@@ -114,28 +114,12 @@ export default function Home() {
                     You could call me a <span className="text-primary font-semibold">“vibe coder”</span>.
                   </p>
                   <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <div className="relative group">
-                      <div 
-                        className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-primary to-accent opacity-50 group-hover:opacity-100 transition duration-1000"
-                        style={{
-                          animation: "border-spin 8s linear infinite"
-                        }}
-                      />
-                      <Button asChild size="lg" className="relative w-full">
-                          <Link href="#contact">Contact Me <Mail className="ml-2" /></Link>
-                      </Button>
-                    </div>
-                    <div className="relative group">
-                       <div 
-                        className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-primary to-accent opacity-50 group-hover:opacity-100 transition duration-1000"
-                        style={{
-                          animation: "border-spin 8s linear infinite"
-                        }}
-                      />
-                      <Button asChild variant="secondary" size="lg" className="relative w-full">
-                          <Link href="#projects">View My Work <ArrowRight className="ml-2" /></Link>
-                      </Button>
-                    </div>
+                    <Button asChild size="lg">
+                        <Link href="#contact">Contact Me <Mail className="ml-2" /></Link>
+                    </Button>
+                    <Button asChild variant="secondary" size="lg">
+                        <Link href="#projects">View My Work <ArrowRight className="ml-2" /></Link>
+                    </Button>
                   </div>
               </div>
             </section>
