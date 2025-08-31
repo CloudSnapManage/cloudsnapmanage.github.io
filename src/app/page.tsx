@@ -45,9 +45,21 @@ const skills = [
 
 export default function Home() {
   const [scrollTop, setScrollTop] = useState(0);
+  const [isFlipping, setIsFlipping] = useState(false);
 
   const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
     setScrollTop(event.currentTarget.scrollTop);
+  };
+
+  const handleAvatarClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (isFlipping) return;
+
+    setIsFlipping(true);
+    setTimeout(() => {
+      window.open(GITHUB_URL, '_blank');
+      setIsFlipping(false);
+    }, 700); // Duration of the animation
   };
 
   return (
@@ -58,7 +70,7 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-6">
 
             <section id="hero" className="py-20 md:py-32 flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <Link href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="relative group animate-in fade-in zoom-in duration-500">
+              <Link href={GITHUB_URL} onClick={handleAvatarClick} className="relative group animate-in fade-in zoom-in duration-500" style={{ perspective: '1000px' }}>
                 <div 
                   className={cn(
                     "absolute -inset-0.5 rounded-full bg-gradient-to-r from-primary/50 to-accent/50",
@@ -69,7 +81,12 @@ export default function Home() {
                     animation: "border-spin 8s linear infinite"
                   }}
                 />
-                <div className="relative rounded-full p-1 bg-background">
+                <div className={cn(
+                    "relative rounded-full p-1 bg-background transition-transform duration-700",
+                    isFlipping && "animate-coin-flip"
+                  )}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
                   <Image
                       src={GITHUB_AVATAR_URL}
                       alt="Shrijan Paudel"
