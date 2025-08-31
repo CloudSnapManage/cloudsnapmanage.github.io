@@ -30,12 +30,12 @@ export function CursorFollower() {
 
   return (
     <div
-      className="pointer-events-none fixed -translate-x-1/2 -translate-y-1/2 z-0 h-80 w-80 rounded-full bg-primary/5
-                 bg-blend-multiply backdrop-filter backdrop-blur-[100px] transition-transform duration-300 
-                 ease-out"
+      className="pointer-events-none fixed -translate-x-1/2 -translate-y-1/2 z-0 h-96 w-96 rounded-full 
+                 transition-transform duration-300 ease-out"
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
+        background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0) 70%)',
         filter: 'blur(100px)',
       }}
     />
