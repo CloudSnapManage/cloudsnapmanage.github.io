@@ -12,6 +12,7 @@ import { TypingAnimation } from '@/components/typing-animation';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Starfield } from '@/components/starfield';
 import { useRef, useState } from 'react';
+import { cn } from '@/lib/utils';
 
 // --- Static Data ---
 const GITHUB_USERNAME = 'CloudSnapManage';
@@ -57,20 +58,33 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-6">
 
             <section id="hero" className="py-20 md:py-32 flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="relative animate-in fade-in zoom-in duration-500">
+              <div className="relative group animate-in fade-in zoom-in duration-500">
+                <div 
+                  className={cn(
+                    "absolute -inset-0.5 rounded-full bg-gradient-to-r from-primary/50 to-accent/50",
+                    "transition-all duration-1000 group-hover:opacity-100 group-hover:shadow-2xl group-hover:shadow-primary/50",
+                    "opacity-50"
+                  )}
+                  style={{
+                    animation: "border-spin 8s linear infinite"
+                  }}
+                />
+                <div className="relative rounded-full p-1 bg-background">
                   <Image
                       src={GITHUB_AVATAR_URL}
                       alt="Shrijan Paudel"
                       width={160}
                       height={160}
-                      className="rounded-full border-4 border-primary/50 shadow-lg"
+                      className="rounded-full shadow-lg"
                       priority
                       data-ai-hint="Shrijan Paudel github avatar"
                   />
                   <div className="absolute bottom-2 right-2 bg-background/80 backdrop-blur-sm p-2 rounded-full shadow-md">
                       <Github className="h-6 w-6 text-primary" />
                   </div>
+                </div>
               </div>
+
               <div className="text-center md:text-left animate-in fade-in slide-in-from-bottom-10 duration-700">
                   <Badge variant="outline" className="mb-4 border-accent text-accent">Available for hire</Badge>
                   <TypingAnimation text="Hi, I'm Shrijan" className="text-4xl md:text-5xl font-extrabold tracking-tight" />
