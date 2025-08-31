@@ -9,10 +9,10 @@ import { Button } from '@/components/ui/button';
 import { Age } from '@/components/age';
 import { ProjectCard } from '@/components/project-card';
 import { TypingAnimation } from '@/components/typing-animation';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { Starfield } from '@/components/starfield';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import { SmoothScroll } from '@/components/smooth-scroll';
 
 // --- Static Data ---
 const GITHUB_USERNAME = 'CloudSnapManage';
@@ -48,10 +48,6 @@ export default function Home() {
   const [isFlipping, setIsFlipping] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
 
-  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
-    setScrollTop(event.currentTarget.scrollTop);
-  };
-
   const handleAvatarClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (isFlipping || isPressed) return;
@@ -70,13 +66,13 @@ export default function Home() {
   return (
     <>
       <Starfield scrollTop={scrollTop}/>
-      <ScrollArea className="flex flex-col h-screen bg-transparent text-foreground" onScroll={handleScroll}>
+      <SmoothScroll onScroll={setScrollTop}>
         <main className="flex-1 z-10">
           <div className="container mx-auto px-4 md:px-6">
 
             <section id="hero" className="py-20 md:py-32 flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <Link href={GITHUB_URL} onClick={handleAvatarClick} className="relative group animate-in fade-in zoom-in duration-700 transition-transform transform hover:scale-105" style={{ perspective: '1000px' }}>
-                <div 
+                <div
                   className={cn(
                     "absolute -inset-0.5 rounded-full bg-gradient-to-r from-primary/50 to-accent/50",
                     "transition-all duration-1000 group-hover:opacity-100 group-hover:shadow-2xl group-hover:shadow-primary/50",
@@ -143,13 +139,13 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">My Tech Stack</h2>
               <div className="flex flex-wrap justify-center gap-3 px-4 md:gap-4">
                 {skills.map(skill => (
-                  <Badge key={skill} className="text-base px-4 py-2 bg-background/50 border border-transparent transition-all hover:bg-primary/20 hover:text-primary hover:scale-105 hover:border-primary/50">
+                  <Badge key={skill} className="text-base px-4 py-2 bg-background/50 border border-transparent transition-all hover:bg-primary/20 hover:text-primary hover:scale-105 hover:border-primary/50 cursor-default">
                     {skill}
                   </Badge>
                 ))}
               </div>
             </section>
-            
+
             <section id="contact" className="text-center py-20 md:py-32 animate-in fade-in-0 slide-in-from-bottom-10 duration-1000">
                 <h2 className="text-3xl md:text-4xl font-bold">Get In Touch</h2>
                 <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
@@ -177,7 +173,7 @@ export default function Home() {
               <p>&copy; {new Date().getFullYear()} Shrijan. All rights reserved.</p>
           </div>
         </footer>
-      </ScrollArea>
+      </SmoothScroll>
     </>
   )
 }
