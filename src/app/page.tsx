@@ -14,25 +14,18 @@ const EMAIL = 'shrijan@example.com';
 
 const projects = [
   {
-    title: "Project Alpha",
-    description: "A full-stack web application for project management, built with a modern tech stack to deliver a seamless user experience.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
-    liveUrl: "#",
-    repoUrl: "#"
+    title: "ReadmePro",
+    description: "Create beautiful, professional README.md files in minutes. Features a live preview, pre-built sections, drag-and-drop reordering, custom sections, theming (light/dark mode), and one-click export to Markdown or PDF.",
+    tech: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "TypeScript", "Lucide React", "react-markdown"],
+    liveUrl: "https://cloudsnapmanage.github.io/ReadmePro/",
+    repoUrl: "https://github.com/CloudSnapManage/ReadmePro"
   },
   {
-    title: "Project Beta",
-    description: "An e-commerce platform with a focus on performance and user engagement, featuring a robust backend and a sleek, responsive design.",
-    tech: ["React", "Node.js", "Express", "MongoDB", "Redux"],
-    liveUrl: "#",
-    repoUrl: "#"
-  },
-  {
-    title: "Project Gamma",
-    description: "A mobile-first social media app that connects users through shared interests, featuring real-time updates and an intuitive interface.",
-    tech: ["React Native", "Firebase", "GraphQL", "Apollo"],
-    liveUrl: "#",
-    repoUrl: "#"
+    title: "VIBE",
+    description: "A macOS-inspired web dashboard that functions like a desktop environment. Includes sticky notes, note-taking, search functionality, quick website access, and customizable UI.",
+    tech: ["Next.js", "React 18", "Tailwind CSS", "Radix UI", "shadcn/ui", "Firebase", "Genkit AI", "Lucide Icons", "TypeScript"],
+    liveUrl: "https://cloudsnapmanage.github.io/VIBE",
+    repoUrl: "https://github.com/CloudSnapManage/VIBE"
   }
 ];
 
