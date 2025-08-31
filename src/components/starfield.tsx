@@ -24,7 +24,7 @@ export function Starfield({ scrollTop }: StarfieldProps) {
   const STAR_COUNT = 800;
   const STAR_COLOR = "#FFFFFF";
   const STAR_SIZE = 3;
-  const ATTRACTION_FORCE = 0.05;
+  const ATTRACTION_FORCE = 0.05; // Reduced from 0.5 for a more subtle effect
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -82,7 +82,7 @@ export function Starfield({ scrollTop }: StarfieldProps) {
         
         if (mouseMovingRef.current) {
             const dxToMouse = mouseX - px;
-            const dyToMouse = mouseY - py;
+            const dyToMouse = (mouseY - scrollTop) - py; // Adjust mouse Y for parallax
             const distToMouse = Math.sqrt(dxToMouse * dxToMouse + dyToMouse * dyToMouse);
             
             if (distToMouse < 200) {
@@ -96,7 +96,7 @@ export function Starfield({ scrollTop }: StarfieldProps) {
         if (px >= 0 && px <= width && py >= 0 && py <= height) {
           const size = (1 - star.z / width) * STAR_SIZE;
           const dx = px - mouseX;
-          const dy = py - mouseY;
+          const dy = py - (mouseY - scrollTop);
           const dist = Math.sqrt(dx * dx + dy * dy);
           const opacity = Math.min(1, 0.7 + Math.max(0, 0.7 - dist / 400));
 
@@ -126,7 +126,7 @@ export function Starfield({ scrollTop }: StarfieldProps) {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, []);
+  }, [scrollTop]); // Rerun effect if scrollTop changes
 
   return (
     <div className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none">
