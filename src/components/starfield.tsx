@@ -76,19 +76,17 @@ export function Starfield({ scrollTop }: StarfieldProps) {
       const { x: mouseX, y: mouseY } = mouseRef.current;
       
       const scrollDelta = Math.abs(scrollTop - lastScrollTopRef.current);
-      lastScrollTopRef.current = scrollTop;
       
-      // Set the target velocity based on scroll speed, but don't apply it directly
+      // Set the target velocity based on scroll speed
       targetVelocityRef.current = BASE_SPEED + scrollDelta * SCROLL_SPEED_FACTOR;
 
       // Smoothly interpolate the current velocity towards the target velocity
       velocityRef.current += (targetVelocityRef.current - velocityRef.current) * LERP_FACTOR;
       
       // Also, smoothly return to base speed when scrolling stops
-      targetVelocityRef.current *= (1 - LERP_FACTOR);
-      if (targetVelocityRef.current < BASE_SPEED) {
-        targetVelocityRef.current = BASE_SPEED;
-      }
+      targetVelocityRef.current = BASE_SPEED + (targetVelocityRef.current - BASE_SPEED) * (1 - LERP_FACTOR);
+      
+      lastScrollTopRef.current = scrollTop;
 
       starsRef.current.forEach(star => {
         star.z -= velocityRef.current;
@@ -149,7 +147,7 @@ export function Starfield({ scrollTop }: StarfieldProps) {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, []); // Only run once on mount
+  }, [scrollTop]); // Re-run effect if scrollTop changes to update the animate closure
 
   return (
     <div className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none">
