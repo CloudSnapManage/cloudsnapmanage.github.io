@@ -120,10 +120,10 @@ export default function Home() {
                     You could call me a <span className="text-primary font-semibold transition-all hover:[text-shadow:0_0_8px_hsl(var(--primary-foreground))]">“vibe coder”</span>.
                   </p>
                   <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <Button asChild size="lg">
+                    <Button asChild size="lg" pushAnimation>
                         <Link href="#contact">Contact Me <Mail className="ml-2" /></Link>
                     </Button>
-                    <Button asChild variant="secondary" size="lg">
+                    <Button asChild variant="secondary" size="lg" pushAnimation>
                         <Link href="#projects">View My Work <ArrowRight className="ml-2" /></Link>
                     </Button>
                   </div>
@@ -143,7 +143,7 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">My Tech Stack</h2>
               <div className="flex flex-wrap justify-center gap-3 px-4 md:gap-4">
                 {skills.map(skill => (
-                  <Badge key={skill} className="text-base px-4 py-2 bg-background/50 border border-transparent transition-all hover:bg-primary/20 hover:text-primary hover:scale-105 hover:border-primary/50 cursor-default">
+                  <Badge key={skill} className="text-base px-4 py-2 bg-background/50 border border-transparent transition-all hover:bg-primary/20 hover:text-primary hover:scale-105 hover:border-primary/50">
                     {skill}
                   </Badge>
                 ))}
@@ -156,12 +156,12 @@ export default function Home() {
                     I'm currently looking for new opportunities. Feel free to reach out via email or connect with me on GitHub.
                 </p>
                 <div className="mt-8 flex justify-center gap-4">
-                    <Button asChild variant="default" size="lg">
+                    <Button asChild variant="default" size="lg" pushAnimation>
                         <Link href={`mailto:${EMAIL}`}>
                             <Mail className="mr-2" /> Email Me
                         </Link>
                     </Button>
-                    <Button asChild variant="secondary" size="lg">
+                    <Button asChild variant="secondary" size="lg" pushAnimation>
                         <Link href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
                             <Github className="mr-2" /> GitHub
                         </Link>

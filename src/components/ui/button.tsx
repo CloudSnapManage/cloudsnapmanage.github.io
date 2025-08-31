@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -36,16 +37,37 @@ const buttonVariants = cva(
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+  asChild?: boolean,
+  pushAnimation?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, pushAnimation = false, onClick, ...props }, ref) => {
+    const [isPressed, setIsPressed] = React.useState(false);
     const Comp = asChild ? Slot : "button"
+
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (pushAnimation) {
+        setIsPressed(true);
+        setTimeout(() => {
+          setIsPressed(false);
+          if (onClick) {
+            onClick(e);
+          }
+        }, 400);
+      } else if (onClick) {
+        onClick(e);
+      }
+    };
+
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          buttonVariants({ variant, size, className }),
+          isPressed && "animate-push-and-release"
+        )}
         ref={ref}
+        onClick={pushAnimation ? handleClick : onClick}
         {...props}
       />
     )

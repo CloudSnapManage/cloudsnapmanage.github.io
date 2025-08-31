@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import type { FC } from 'react';
 import { Github, ExternalLink } from "lucide-react";
@@ -35,12 +36,12 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
                 </div>
             </CardContent>
             <CardFooter className="flex justify-end gap-2 pt-4">
-                <Button asChild variant="ghost" size="sm">
+                <Button asChild variant="ghost" size="sm" pushAnimation>
                     <Link href={project.repoUrl} target="_blank" rel="noopener noreferrer">
                         <Github className="mr-2 h-4 w-4" /> Code
                     </Link>
                 </Button>
-                <Button asChild variant="default" size="sm">
+                <Button asChild variant="default" size="sm" pushAnimation>
                     <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                         Live Demo <ExternalLink className="ml-2 h-4 w-4" />
                     </Link>
