@@ -106,12 +106,12 @@ export default function Home() {
                   <Badge variant="outline" className="mb-4 border-accent text-accent">Available for hire</Badge>
                   <TypingAnimation text="Hi, I'm Shrijan" className="text-4xl md:text-5xl font-extrabold tracking-tight" speed={100} />
                   <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                    I’m a <span className="text-primary font-semibold"><Age />-year-old</span> self-taught developer from Nepal,
+                    I’m a <span className="text-primary font-semibold transition-all hover:[text-shadow:0_0_8px_hsl(var(--primary-foreground))]"><Age />-year-old</span> self-taught developer from Nepal,
                     exploring the world of code with curiosity and creativity.
                     Learning is a journey—and thanks to the rise of AI, it's been an exciting way to transform imagination into reality.
                     I enjoy building projects that feel alive, whether it's tools that make work easier or interfaces that inspire.
                     With AI as my coding partner, I’m constantly experimenting, learning, and shaping ideas into products.
-                    You could call me a <span className="text-primary font-semibold">“vibe coder”</span>.
+                    You could call me a <span className="text-primary font-semibold transition-all hover:[text-shadow:0_0_8px_hsl(var(--primary-foreground))]">“vibe coder”</span>.
                   </p>
                   <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                     <Button asChild size="lg">
