@@ -24,7 +24,7 @@ export function Starfield({ scrollTop }: StarfieldProps) {
   const STAR_COUNT = 800;
   const STAR_COLOR = "#FFFFFF";
   const STAR_SIZE = 3;
-  const ATTRACTION_FORCE = 0.02; // Drastically reduced for a more subtle effect
+  const ATTRACTION_FORCE = 0.02; 
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -81,7 +81,7 @@ export function Starfield({ scrollTop }: StarfieldProps) {
         
         if (mouseMovingRef.current) {
             const dxToMouse = mouseX - px;
-            const dyToMouse = mouseY - py; // Mouse Y is already relative to viewport
+            const dyToMouse = mouseY - py;
             const distToMouse = Math.sqrt(dxToMouse * dxToMouse + dyToMouse * dyToMouse);
             
             if (distToMouse < 200) {
