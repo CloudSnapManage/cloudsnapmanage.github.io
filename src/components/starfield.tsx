@@ -147,7 +147,7 @@ export function Starfield({ scrollTop }: StarfieldProps) {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, [scrollTop]); // Re-run effect if scrollTop changes to update the animate closure
+  }, []); // scrollTop is managed inside animate now
 
   return (
     <div className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none">
