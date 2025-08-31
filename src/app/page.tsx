@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Age } from '@/components/age';
 import { ProjectCard } from '@/components/project-card';
 import { TypingAnimation } from '@/components/typing-animation';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 // --- Static Data ---
 const GITHUB_USERNAME = 'CloudSnapManage';
@@ -38,7 +39,7 @@ const skills = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-dvh bg-transparent text-foreground">
+    <ScrollArea className="flex flex-col h-screen bg-transparent text-foreground">
       <main className="flex-1">
         <div className="container mx-auto px-4 md:px-6">
 
@@ -126,6 +127,6 @@ export default function Home() {
             <p>&copy; {new Date().getFullYear()} Shrijan. All rights reserved.</p>
         </div>
       </footer>
-    </div>
+    </ScrollArea>
   )
 }
