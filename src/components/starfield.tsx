@@ -21,12 +21,17 @@ export function Starfield({ scrollTop }: StarfieldProps) {
   const mouseMovingRef = useRef<boolean>(false);
   const mouseMoveTimeoutRef = useRef<NodeJS.Timeout>();
   const lastScrollTopRef = useRef(0);
+  const velocityRef = useRef(0.2); // Current velocity
+  const targetVelocityRef = useRef(0.2); // Target velocity to smoothly move towards
 
   const STAR_COUNT = 800;
   const STAR_COLOR = "#FFFFFF";
   const STAR_SIZE = 3;
-  const ATTRACTION_FORCE = 1.0; 
+  const ATTRACTION_FORCE = 0.5; // Constant force
   const ATTRACTION_RADIUS = 150;
+  const BASE_SPEED = 0.2;
+  const SCROLL_SPEED_FACTOR = 0.7;
+  const LERP_FACTOR = 0.05; // Smoothing factor for velocity change
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -70,16 +75,23 @@ export function Starfield({ scrollTop }: StarfieldProps) {
       
       const { x: mouseX, y: mouseY } = mouseRef.current;
       
-      const scrollDelta = scrollTop - lastScrollTopRef.current;
+      const scrollDelta = Math.abs(scrollTop - lastScrollTopRef.current);
       lastScrollTopRef.current = scrollTop;
       
-      // The "warp speed" factor. Increase to make scrolling more impactful.
-      const scrollSpeedFactor = 0.5;
-      const velocity = 0.2 + Math.abs(scrollDelta) * scrollSpeedFactor;
+      // Set the target velocity based on scroll speed, but don't apply it directly
+      targetVelocityRef.current = BASE_SPEED + scrollDelta * SCROLL_SPEED_FACTOR;
 
+      // Smoothly interpolate the current velocity towards the target velocity
+      velocityRef.current += (targetVelocityRef.current - velocityRef.current) * LERP_FACTOR;
+      
+      // Also, smoothly return to base speed when scrolling stops
+      targetVelocityRef.current *= (1 - LERP_FACTOR);
+      if (targetVelocityRef.current < BASE_SPEED) {
+        targetVelocityRef.current = BASE_SPEED;
+      }
 
       starsRef.current.forEach(star => {
-        star.z -= velocity;
+        star.z -= velocityRef.current;
 
         if (star.z <= 0) {
           star.x = Math.random() * width - width / 2;
@@ -98,9 +110,9 @@ export function Starfield({ scrollTop }: StarfieldProps) {
             
             if (distToMouse < ATTRACTION_RADIUS) {
                 const angle = Math.atan2(dyToMouse, dxToMouse);
-                const force = ATTRACTION_FORCE / (distToMouse / 50 + 1);
-                star.x += Math.cos(angle) * force;
-                star.y += Math.sin(angle) * force;
+                // Apply a small, constant force
+                star.x += Math.cos(angle) * ATTRACTION_FORCE;
+                star.y += Math.sin(angle) * ATTRACTION_FORCE;
             }
         }
 
@@ -137,7 +149,7 @@ export function Starfield({ scrollTop }: StarfieldProps) {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, [scrollTop]); // Rerun effect if scrollTop changes
+  }, []); // Only run once on mount
 
   return (
     <div className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none">
