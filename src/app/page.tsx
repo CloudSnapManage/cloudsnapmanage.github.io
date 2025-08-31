@@ -75,7 +75,7 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-6">
 
             <section id="hero" className="py-20 md:py-32 flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <Link href={GITHUB_URL} onClick={handleAvatarClick} className="relative group animate-in fade-in zoom-in duration-500 transition-transform transform hover:scale-105" style={{ perspective: '1000px' }}>
+              <Link href={GITHUB_URL} onClick={handleAvatarClick} className="relative group animate-in fade-in zoom-in duration-700 transition-transform transform hover:scale-105" style={{ perspective: '1000px' }}>
                 <div 
                   className={cn(
                     "absolute -inset-0.5 rounded-full bg-gradient-to-r from-primary/50 to-accent/50",
@@ -108,7 +108,7 @@ export default function Home() {
                 </div>
               </Link>
 
-              <div className="text-center md:text-left animate-in fade-in slide-in-from-bottom-10 duration-700">
+              <div className="text-center md:text-left animate-in fade-in slide-in-from-bottom-10 duration-1000">
                   <Badge variant="outline" className="mb-4 border-accent text-accent">Available for hire</Badge>
                   <TypingAnimation text="Hi, I'm Shrijan" className="text-4xl md:text-5xl font-extrabold tracking-tight" speed={100} />
                   <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
@@ -130,7 +130,7 @@ export default function Home() {
               </div>
             </section>
 
-            <section id="projects" className="py-16 md:py-24 animate-in fade-in-0 slide-in-from-bottom-10 duration-700">
+            <section id="projects" className="py-16 md:py-24 animate-in fade-in-0 slide-in-from-bottom-10 duration-1000">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Featured Projects</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {projects.map((project, i) => (
@@ -139,11 +139,11 @@ export default function Home() {
               </div>
             </section>
 
-            <section id="skills" className="py-16 md:py-24 bg-card/50 rounded-2xl animate-in fade-in-0 slide-in-from-bottom-10 duration-900">
+            <section id="skills" className="py-16 md:py-24 bg-card/50 rounded-2xl animate-in fade-in-0 slide-in-from-bottom-10 duration-1000">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">My Tech Stack</h2>
               <div className="flex flex-wrap justify-center gap-3 px-4 md:gap-4">
                 {skills.map(skill => (
-                  <Badge key={skill} className="text-base px-4 py-2 bg-background/50 border border-transparent transition-all hover:bg-primary/20 hover:text-primary hover:scale-105 hover:border-primary/50 cursor-default">
+                  <Badge key={skill} className="text-base px-4 py-2 bg-background/50 border border-transparent transition-all hover:bg-primary/20 hover:text-primary hover:scale-105 hover:border-primary/50">
                     {skill}
                   </Badge>
                 ))}
