@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Age } from '@/components/age';
 import { ProjectCard } from '@/components/project-card';
 import { TypingAnimation } from '@/components/typing-animation';
+import { CursorFollower } from '@/components/cursor-follower';
 
 // --- Static Data ---
 const GITHUB_USERNAME = 'CloudSnapManage';
@@ -39,6 +40,7 @@ const skills = [
 export default function Home() {
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
+      <CursorFollower />
       <main className="flex-1">
         <div className="container mx-auto px-4 md:px-6">
 
