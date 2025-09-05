@@ -106,4 +106,14 @@
       transform: translateY(0);
     }
   }
+  @keyframes scale-up-fade-out {
+    from {
+      transform: scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+  }
 }
