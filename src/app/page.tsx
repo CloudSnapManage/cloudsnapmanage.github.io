@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { SmoothScroll } from '@/components/smooth-scroll';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { LoadingScreen } from '@/components/loading-screen';
 
 // --- Static Data ---
 const GITHUB_USERNAME = 'CloudSnapManage';
@@ -55,7 +56,17 @@ function PortfolioContent() {
   const [scrollTop, setScrollTop] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500); // Adjust time as needed
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleAvatarClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -186,6 +197,7 @@ function PortfolioContent() {
 
   return (
     <>
+      <LoadingScreen isLoading={isLoading} />
       <Starfield scrollTop={scrollTop} />
       {isMobile ? (
         <div onScroll={(e) => handleScroll(e.currentTarget.scrollTop)} className="h-screen w-full overflow-y-auto">
