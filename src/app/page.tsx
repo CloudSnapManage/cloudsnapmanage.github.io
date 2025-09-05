@@ -68,6 +68,18 @@ function PortfolioContent() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    // Cleanup function to restore scrolling when the component unmounts
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isLoading]);
+
   const handleAvatarClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (isFlipping || isPressed) return;
@@ -198,16 +210,18 @@ function PortfolioContent() {
   return (
     <>
       <LoadingScreen isLoading={isLoading} />
-      <Starfield scrollTop={scrollTop} />
-      {isMobile ? (
-        <div onScroll={(e) => handleScroll(e.currentTarget.scrollTop)} className="h-screen w-full overflow-y-auto">
-          {content}
-        </div>
-      ) : (
-        <SmoothScroll onScroll={handleScroll}>
-          {content}
-        </SmoothScroll>
-      )}
+      <div style={{ opacity: isLoading ? 0 : 1, transition: 'opacity 0.3s ease-in' }}>
+        <Starfield scrollTop={scrollTop} />
+        {isMobile ? (
+          <div onScroll={(e) => handleScroll(e.currentTarget.scrollTop)} className="h-screen w-full overflow-y-auto">
+            {content}
+          </div>
+        ) : (
+          <SmoothScroll onScroll={handleScroll}>
+            {content}
+          </SmoothScroll>
+        )}
+      </div>
     </>
   )
 }
