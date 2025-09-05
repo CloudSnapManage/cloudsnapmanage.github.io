@@ -23,6 +23,13 @@ const EMAIL = 'cloudsnapmanage@gmail.com';
 
 const projects = [
   {
+    title: "ScribbleCraft: Handwriting Simulator",
+    description: "Transform your typed text into beautiful, realistic handwriting. This web application provides a real-time canvas that converts your input from a rich text editor into elegant, customizable handwriting.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "ShadCN UI", "jsPDF", "Lucide React"],
+    liveUrl: "https://cloudsnapmanage.github.io/ScribbleCraft/",
+    repoUrl: "https://github.com/CloudSnapManage/ScribbleCraft"
+  },
+  {
     title: "ReadmePro",
     description: "Create beautiful, professional README.md files in minutes. Features a live preview, pre-built sections, drag-and-drop reordering, custom sections, theming (light/dark mode), and one-click export to Markdown or PDF.",
     tech: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "TypeScript", "Lucide React", "react-markdown"],
