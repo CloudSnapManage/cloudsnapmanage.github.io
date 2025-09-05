@@ -10,10 +10,19 @@ export const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
   return (
     <div
       className={cn(
-        "fixed inset-0 z-50 flex items-center justify-center bg-background transition-opacity duration-500",
+        "fixed inset-0 z-50 flex flex-col items-center justify-center bg-background transition-opacity duration-500",
         isLoading ? "opacity-100" : "opacity-0 pointer-events-none"
       )}
     >
+      <h2
+        className={cn(
+            "text-2xl font-bold text-primary mb-4 opacity-0",
+            isLoading && "animate-fade-in-slide-up"
+        )}
+        style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}
+      >
+        Welcome
+      </h2>
       <svg
         width="300"
         height="100"
@@ -28,6 +37,9 @@ export const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
             stroke-dasharray: 1000;
             stroke-dashoffset: 1000;
             animation: draw 2s ease-in-out forwards;
+          }
+          .animate-fade-in-slide-up {
+              animation: fade-in-slide-up 1s ease-out forwards;
           }
         `}</style>
         {/* Shrijan */}
