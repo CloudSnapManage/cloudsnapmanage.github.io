@@ -138,7 +138,7 @@ function PortfolioContent() {
 
             <div className="animate-in fade-in-0 slide-in-from-bottom-10-slow duration-1000 text-center md:text-left">
               <Badge variant="outline" className="mb-4 border-accent text-accent">Available for hire</Badge>
-              <TypingAnimation text="Hi, I'm Shrijan" className="text-4xl font-extrabold tracking-tight sm:text-5xl" speed={50} />
+              <TypingAnimation text="Hi, I'm Shrijan" className="text-4xl font-extrabold tracking-tight sm:text-5xl" startAnimation={!isLoading} />
               <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
                 I’m a <span className="text-primary font-semibold transition-all hover:[text-shadow:0_0_8px_hsl(var(--primary-foreground))]"><Age />-year-old</span> self-taught developer from Nepal,
                 exploring the world of code with curiosity and creativity.
