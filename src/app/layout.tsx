@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Vibe Coder Portfolio | Shrijan',
+  title: 'Shrijan Paudel',
   description: "A portfolio for Shrijan, a full-stack developer passionate about building beautiful and functional web applications.",
 };
 
