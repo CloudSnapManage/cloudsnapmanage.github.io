@@ -60,6 +60,10 @@ const skills = [
   "JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express",
   "Python", "Django", "PostgreSQL", "MongoDB", "Prisma", "GraphQL", "Docker", "Git"
 ];
+
+// --- Note for owner ---
+// JUST UPDATE THE STATIC DATA TO UPDATE THE PROJECTS THE UI WILL BE GENERATED AUTOMATICALLY.
+
 // --- End Static Data ---
 
 function PortfolioContent() {
