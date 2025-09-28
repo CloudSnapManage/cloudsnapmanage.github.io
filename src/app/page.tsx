@@ -171,8 +171,8 @@ function PortfolioContent() {
             </div>
           </section>
 
-          <section id="publications" className="animate-in fade-in-0 slide-in-from-bottom-10-slow py-16 duration-1000 md:py-24">
-            <h2 className="mb-12 text-center text-3xl font-bold md:text-4xl">Guides &amp; Publications</h2>
+          <section id="other-repositories" className="animate-in fade-in-0 slide-in-from-bottom-10-slow py-16 duration-1000 md:py-24">
+            <h2 className="mb-12 text-center text-3xl font-bold md:text-4xl">Other Repositories</h2>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {publications.map((publication, i) => (
                 <ProjectCard 
@@ -247,3 +247,5 @@ function PortfolioContent() {
 export default function Home() {
     return <PortfolioContent />;
 }
+
+    
