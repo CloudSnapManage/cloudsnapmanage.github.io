@@ -49,8 +49,8 @@ const projects = [
 const publications = [
   {
     title: "Linux Mint Customization Guide",
-    description: "A simple guide on how to customize the Linux Mint desktop environment, transforming it into a beautiful and personalized workspace.",
-    tech: ["Linux Mint", "Desktop Customization", "UI/UX"],
+    description: "A personal reference for transforming the Cinnamon desktop environment into a modern, macOS-inspired workspace, complete with themes, icons, and tools.",
+    tech: ["Linux Mint", "Cinnamon DE", "Desktop Customization", "GTK Themes", "Plank Dock"],
     liveUrl: "https://cloudsnapmanage.github.io/linux-mint-customization-guide/",
     repoUrl: "https://github.com/CloudSnapManage/linux-mint-customization-guide"
   }
