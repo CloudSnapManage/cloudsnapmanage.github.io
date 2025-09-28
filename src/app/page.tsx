@@ -23,7 +23,7 @@ const GITHUB_AVATAR_URL = `https://github.com/CloudSnapManage.png`;
 const EMAIL = 'cloudsnapmanage@gmail.com';
 
 const projects = [
-  {
+    {
     title: "ScribbleCraft: Handwriting Simulator",
     description: "Transform your typed text into beautiful, realistic handwriting. This web application provides a real-time canvas that converts your input from a rich text editor into elegant, customizable handwriting.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "ShadCN UI", "jsPDF", "Lucide React"],
@@ -40,9 +40,19 @@ const projects = [
   {
     title: "VIBE",
     description: "A macOS-inspired web dashboard that functions like a desktop environment. Includes sticky notes, note-taking, search functionality, quick website access, and customizable UI.",
-    tech: ["Next.js", "React 18", "Tailwind CSS", "Radix UI", "shadcn/ui", "Firebase", "Genkit AI", "Lucide Icons", "TypeScript"],
+    tech: ["Next.js", "React 18", "Tailwind CSS", "Radix UI", "shadcn/ui", "Firebase", "Genkit AI", "Lucide AI", "Lucide Icons", "TypeScript"],
     liveUrl: "https://cloudsnapmanage.github.io/VIBE",
     repoUrl: "https://github.com/CloudSnapManage/VIBE"
+  }
+];
+
+const publications = [
+  {
+    title: "Linux Mint Customization Guide",
+    description: "A simple guide on how to customize the Linux Mint desktop environment, transforming it into a beautiful and personalized workspace.",
+    tech: ["Linux Mint", "Desktop Customization", "UI/UX"],
+    liveUrl: "https://cloudsnapmanage.github.io/linux-mint-customization-guide/",
+    repoUrl: "https://github.com/CloudSnapManage/linux-mint-customization-guide"
   }
 ];
 
@@ -54,7 +64,6 @@ const skills = [
 
 function PortfolioContent() {
   const [scrollTop, setScrollTop] = useState(0);
-  const [isFlipping, setIsFlipping] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const isMobile = useIsMobile();
@@ -82,16 +91,12 @@ function PortfolioContent() {
 
   const handleAvatarClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    if (isFlipping || isPressed) return;
+    if (isPressed) return;
 
     setIsPressed(true);
     setTimeout(() => {
       setIsPressed(false);
-      setIsFlipping(true);
-      setTimeout(() => {
         window.open(GITHUB_URL, '_blank');
-        setIsFlipping(false);
-      }, 700); // coin-flip duration
     }, 400); // push-and-release duration
   };
 
@@ -116,7 +121,6 @@ function PortfolioContent() {
               />
               <div className={cn(
                 "relative rounded-full bg-background p-1 transition-transform duration-700",
-                isFlipping && "animate-coin-flip",
                 isPressed && "animate-push-and-release"
               )}
                 style={{ transformStyle: 'preserve-3d' }}
@@ -163,6 +167,15 @@ function PortfolioContent() {
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((project, i) => (
                 <ProjectCard key={i} project={project} />
+              ))}
+            </div>
+          </section>
+
+          <section id="publications" className="animate-in fade-in-0 slide-in-from-bottom-10-slow py-16 duration-1000 md:py-24">
+            <h2 className="mb-12 text-center text-3xl font-bold md:text-4xl">Guides &amp; Publications</h2>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {publications.map((publication, i) => (
+                <ProjectCard key={i} project={publication} />
               ))}
             </div>
           </section>
@@ -229,3 +242,5 @@ function PortfolioContent() {
 export default function Home() {
     return <PortfolioContent />;
 }
+
+    
