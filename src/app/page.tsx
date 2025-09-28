@@ -19,11 +19,11 @@ import { LoadingScreen } from '@/components/loading-screen';
 // --- Static Data ---
 const GITHUB_USERNAME = 'CloudSnapManage';
 const GITHUB_URL = `https://github.com/${GITHUB_USERNAME}`;
-const GITHUB_AVATAR_URL = `https://github.com/CloudSnapManage.png`;
+const GITHUB_AVATAR_URL = `https://github.com/${GITHUB_USERNAME}.png`;
 const EMAIL = 'cloudsnapmanage@gmail.com';
 
 const projects = [
-    {
+  {
     title: "ScribbleCraft: Handwriting Simulator",
     description: "Transform your typed text into beautiful, realistic handwriting. This web application provides a real-time canvas that converts your input from a rich text editor into elegant, customizable handwriting.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "ShadCN UI", "jsPDF", "Lucide React"],
@@ -69,10 +69,9 @@ function PortfolioContent() {
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500); // Adjust time as needed
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -83,7 +82,6 @@ function PortfolioContent() {
     } else {
       document.body.style.overflow = 'auto';
     }
-    // Cleanup function to restore scrolling when the component unmounts
     return () => {
       document.body.style.overflow = 'auto';
     };
@@ -96,14 +94,14 @@ function PortfolioContent() {
     setIsPressed(true);
     setTimeout(() => {
       setIsPressed(false);
-        window.open(GITHUB_URL, '_blank');
-    }, 400); // push-and-release duration
+      window.open(GITHUB_URL, '_blank');
+    }, 400);
   };
 
   const handleScroll = (scrollValue: number) => {
     setScrollTop(scrollValue);
   };
-  
+
   const content = (
     <>
       <main className="z-10 flex-1">
@@ -175,9 +173,9 @@ function PortfolioContent() {
             <h2 className="mb-12 text-center text-3xl font-bold md:text-4xl">Other Repositories</h2>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {publications.map((publication, i) => (
-                <ProjectCard 
-                  key={i} 
-                  project={publication} 
+                <ProjectCard
+                  key={i}
+                  project={publication}
                   repoButtonText="Repo"
                   liveButtonText="Learn More"
                 />
@@ -245,7 +243,5 @@ function PortfolioContent() {
 }
 
 export default function Home() {
-    return <PortfolioContent />;
+  return <PortfolioContent />;
 }
-
-    

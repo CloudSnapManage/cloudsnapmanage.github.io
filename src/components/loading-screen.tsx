@@ -44,17 +44,11 @@ export const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
               stroke-dashoffset: 1000;
               animation: draw 2s ease-in-out forwards;
             }
-            .animate-fade-in-slide-up {
-                animation: fade-in-slide-up 1s ease-out forwards;
-            }
-            .animate-scale-up-fade-out {
-              animation: scale-up-fade-out 0.5s ease-in forwards;
-            }
           `}</style>
           {/* Shrijan */}
           <path
             className="signature-path"
-            d="M 20 60 Q 30 20 50 50 Q 70 80 90 50" 
+            d="M 20 60 Q 30 20 50 50 Q 70 80 90 50"
           />
           <path
             className="signature-path"
