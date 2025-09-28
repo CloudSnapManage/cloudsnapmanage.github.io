@@ -51,8 +51,8 @@ const publications = [
     title: "Linux Mint Customization",
     description: "A personal reference for transforming the Cinnamon desktop environment into a modern, macOS-inspired workspace, complete with themes, icons, and tools.",
     tech: ["Linux Mint", "Cinnamon DE", "Desktop Customization", "GTK Themes", "Plank Dock"],
-    liveUrl: "https://cloudsnapmanage.github.io/linux-mint-customization-guide/",
-    repoUrl: "https://github.com/CloudSnapManage/linux-mint-customization-guide"
+    liveUrl: "https://cloudsnapmanage.github.io/linux-mint-customization/",
+    repoUrl: "https://github.com/CloudSnapManage/linux-mint-customization/"
   }
 ];
 
