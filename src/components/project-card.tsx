@@ -17,9 +17,11 @@ type Project = {
 
 interface ProjectCardProps {
     project: Project;
+    repoButtonText?: string;
+    liveButtonText?: string;
 }
 
-export const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
+export const ProjectCard: FC<ProjectCardProps> = ({ project, repoButtonText = "Code", liveButtonText = "Live Demo" }) => {
     return (
         <Card className="flex flex-col h-full bg-card/60 backdrop-blur-sm border-border/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20">
             <CardHeader>
@@ -38,12 +40,12 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
             <CardFooter className="flex justify-end gap-2 pt-4">
                 <Button asChild variant="ghost" size="sm" pushAnimation>
                     <Link href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className="mr-2 h-4 w-4" /> Code
+                        <Github className="mr-2 h-4 w-4" /> {repoButtonText}
                     </Link>
                 </Button>
                 <Button asChild variant="default" size="sm" pushAnimation>
                     <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        Live Demo <ExternalLink className="ml-2 h-4 w-4" />
+                        {liveButtonText} <ExternalLink className="ml-2 h-4 w-4" />
                     </Link>
                 </Button>
             </CardFooter>

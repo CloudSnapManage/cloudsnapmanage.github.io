@@ -175,7 +175,12 @@ function PortfolioContent() {
             <h2 className="mb-12 text-center text-3xl font-bold md:text-4xl">Guides &amp; Publications</h2>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {publications.map((publication, i) => (
-                <ProjectCard key={i} project={publication} />
+                <ProjectCard 
+                  key={i} 
+                  project={publication} 
+                  repoButtonText="Repo"
+                  liveButtonText="Learn More"
+                />
               ))}
             </div>
           </section>
@@ -242,5 +247,3 @@ function PortfolioContent() {
 export default function Home() {
     return <PortfolioContent />;
 }
-
-    
