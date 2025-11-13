@@ -53,7 +53,7 @@ const projects = [
   },
   {
   title: "Book Verse",
-    description: "",
+    description: "BookVerse is a modern, personal web application that lets you manage your entire media library with ease. Search for books, movies, anime, and K-dramas, add them to your collection, track your progress, add personal notes and ratings, and view your entire library on a polished, filterable dashboard.",
     tech: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "TypeScript", "Lucide React", "next-themes", "Zod", "React Hook Form", "Recharts", "Axios"],
     liveUrl: "https://cloudsnapmanage.github.io/BookVerse/",
     repoUrl: "https://github.com/CloudSnapManage/BookVerse",
