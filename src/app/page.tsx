@@ -50,7 +50,14 @@ const projects = [
     tech: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "TypeScript", "Lucide React", "next-themes"],
     liveUrl: "https://cloudsnapmanage.github.io/lyricland/",
     repoUrl: "https://github.com/CloudSnapManage/lyricland",
-  }
+  },
+  {
+  title: "Book Verse",
+    description: "",
+    tech: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "TypeScript", "Lucide React", "next-themes", "Zod", "React Hook Form", "Recharts", "Axios"],
+    liveUrl: "https://cloudsnapmanage.github.io/BookVerse/",
+    repoUrl: "https://github.com/CloudSnapManage/BookVerse".
+  {
 
 ];
 
