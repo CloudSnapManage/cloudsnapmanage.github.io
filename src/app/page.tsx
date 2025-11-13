@@ -43,7 +43,15 @@ const projects = [
     tech: ["Next.js", "React 18", "Tailwind CSS", "Radix UI", "shadcn/ui", "Firebase", "Genkit AI", "Lucide AI", "Lucide Icons", "TypeScript"],
     liveUrl: "https://cloudsnapmanage.github.io/VIBE",
     repoUrl: "https://github.com/CloudSnapManage/VIBE"
+  },
+  {
+   title: "LyricLand",
+    description: "Lyric Land is a sleek web application for music lovers. It allows you to instantly search for song lyrics and save your favorites to a personal library. This library is beautifully displayed as a virtual bookshelf, giving you a unique and visual way to organize the songs you love. The app also includes quick links to listen to tracks on YouTube and download lyrics for offline use. ",
+    tech: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "TypeScript", "Lucide React", "next-themes"],
+    liveUrl: "https://cloudsnapmanage.github.io/lyricland/",
+    repoUrl: "https://github.com/CloudSnapManage/lyricland",
   }
+
 ];
 
 const publications = [
