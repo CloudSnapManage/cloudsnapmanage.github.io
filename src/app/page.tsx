@@ -24,6 +24,14 @@ const EMAIL = 'cloudsnapmanage@gmail.com';
 
 const projects = [
   {
+  title: "PyVerse",
+    description: "PyVerse is An immersive 3D interactive journey to master Python. Travel through the Constellation of Code, unlocking nodes from Variables to Advanced Metaprogramming with an AI-powered tutor.",
+    tech: ["React", "TypeScript", "Vite", "React Three Fiber", "Three.js", "@react-three/drei", "Tailwind CSS", "Google Gemini AI", "React Markdown"]
+    liveUrl: "https://cloudsnapmanage.github.io/PyVerse/",
+    repoUrl: "https://github.com/CloudSnapManage/PyVerse",
+  },
+  
+  {
     title: "ScribbleCraft: Handwriting Simulator",
     description: "Transform your typed text into beautiful, realistic handwriting. This web application provides a real-time canvas that converts your input from a rich text editor into elegant, customizable handwriting.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "ShadCN UI", "jsPDF", "Lucide React"],
