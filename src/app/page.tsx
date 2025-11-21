@@ -26,7 +26,7 @@ const projects = [
   {
   title: "PyVerse",
     description: "PyVerse is An immersive 3D interactive journey to master Python. Travel through the Constellation of Code, unlocking nodes from Variables to Advanced Metaprogramming with an AI-powered tutor.",
-    tech: ["React", "TypeScript", "Vite", "React Three Fiber", "Three.js", "@react-three/drei", "Tailwind CSS", "Google Gemini AI", "React Markdown"]
+    tech: ["React", "TypeScript", "Vite", "React Three Fiber", "Three.js", "@react-three/drei", "Tailwind CSS", "Google Gemini AI", "React Markdown"],
     liveUrl: "https://cloudsnapmanage.github.io/PyVerse/",
     repoUrl: "https://github.com/CloudSnapManage/PyVerse",
   },
