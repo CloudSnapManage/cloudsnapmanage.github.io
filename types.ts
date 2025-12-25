@@ -20,11 +20,6 @@ export interface TechItem {
   category: 'Language' | 'Frontend' | 'Backend' | 'Database' | 'Tools';
 }
 
-export interface AdminCredentials {
-  email: string;
-  passwordHash: string;
-}
-
 export interface CustomSection {
   id: string;
   title: string;
@@ -38,4 +33,9 @@ export interface HeroData {
   greeting: string;
   bio: string;
   image?: string;
+}
+
+export interface AdminCredentials {
+  email: string;
+  passwordHash: string;
 }

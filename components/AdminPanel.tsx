@@ -1,8 +1,7 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useData } from '../contexts/DataContext';
 import { Lock, LogIn, ArrowLeft, Plus, Trash2, Save, LogOut, Settings, LayoutGrid, FolderGit2, Users, Layers, Search, Edit, X, Menu, Upload, Image as ImageIcon, Copy, Check, AlertTriangle, FileJson, Cloud, UserCircle } from 'lucide-react';
 import { Project, HeroData } from '../types';
-import { HERO_CONTENT } from '../constants';
 
 interface AdminPanelProps {
   onBack: () => void;
@@ -104,7 +103,6 @@ const AdminDashboard: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   // Settings & Export State
   const [newPass, setNewPass] = useState('');
   const [passMsg, setPassMsg] = useState('');
-  const [showExport, setShowExport] = useState(false);
   const [copied, setCopied] = useState(false);
 
   // User Mgmt State
@@ -146,7 +144,6 @@ const AdminDashboard: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     setActiveTab(tab);
     resetForm();
     setSearchQuery('');
-    setShowExport(false);
     setIsMobileMenuOpen(false);
   };
 
@@ -273,16 +270,31 @@ const AdminDashboard: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   };
 
   const handleCopyCode = () => {
-    const code = `// REPLACE THE CONTENT OF constants.ts WITH THIS:
-import { Project, TechItem } from './types';
+    const code = `import { Project, TechItem, HeroData, CustomSection, AdminCredentials } from './types';
 
-export const HERO_CONTENT = ${JSON.stringify(heroData, null, 2)};
+// =================================================================================
+// 🟢 HERO SECTION
+// =================================================================================
+export const HERO_CONTENT: HeroData = ${JSON.stringify(heroData, null, 2)};
 
+// =================================================================================
+// 🟢 PROJECTS SECTION
+// =================================================================================
 export const PROJECTS: Project[] = ${JSON.stringify(projects, null, 2)};
 
+// =================================================================================
+// 🟢 REPOSITORIES SECTION
+// =================================================================================
 export const OTHER_REPOS: Project[] = ${JSON.stringify(otherRepos, null, 2)};
 
-// Note: TECH_STACK is static in the current context, ensuring it remains.
+// =================================================================================
+// 🟢 CUSTOM SECTIONS
+// =================================================================================
+export const CUSTOM_SECTIONS: CustomSection[] = ${JSON.stringify(customSections, null, 2)};
+
+// =================================================================================
+// 🟢 TECH STACK
+// =================================================================================
 export const TECH_STACK: TechItem[] = [
   { name: "JavaScript", category: "Language" },
   { name: "TypeScript", category: "Language" },
@@ -300,6 +312,11 @@ export const TECH_STACK: TechItem[] = [
   { name: "Docker", category: "Tools" },
   { name: "Git", category: "Tools" },
 ];
+
+// =================================================================================
+// 🟢 ADMIN USERS
+// =================================================================================
+export const ADMIN_USERS: AdminCredentials[] = ${JSON.stringify(users, null, 2)};
 `;
     navigator.clipboard.writeText(code);
     setCopied(true);

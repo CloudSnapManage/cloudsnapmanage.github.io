@@ -1,11 +1,7 @@
 import React from 'react';
-import { Mail, Github } from 'lucide-react';
+import { Mail, Github, Lock } from 'lucide-react';
 
-interface ContactProps {
-  onAdminClick?: () => void;
-}
-
-const Contact: React.FC<ContactProps> = ({ onAdminClick }) => {
+const Contact: React.FC = () => {
   return (
     <footer id="contact" className="bg-background pt-24 pb-12 border-t border-white/5">
       <div className="container mx-auto px-6">
@@ -41,17 +37,13 @@ const Contact: React.FC<ContactProps> = ({ onAdminClick }) => {
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-sm text-muted">
           <p>© 2025 Shrijan. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-             <button 
-                onClick={(e) => {
-                  e.preventDefault();
-                  if(onAdminClick) onAdminClick();
-                }}
-                className="hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0 text-muted"
-             >
-               Admin
-             </button>
-          </div>
+          <a 
+            href="#/admin" 
+            className="mt-4 md:mt-0 opacity-20 hover:opacity-100 transition-opacity p-2"
+            title="Admin Access"
+          >
+            <Lock size={14} />
+          </a>
         </div>
       </div>
     </footer>

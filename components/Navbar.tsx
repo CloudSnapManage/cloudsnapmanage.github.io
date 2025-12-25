@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code } from 'lucide-react';
+import { Menu, X, Code, Cloud } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,8 +21,8 @@ const Navbar: React.FC = () => {
     >
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 font-bold text-xl text-white tracking-tight">
-          <Code className="text-primary" />
-          <span>Shrijan<span className="text-primary">.</span></span>
+          <Cloud className="text-primary" />
+          <span>CloudSnapManage<span className="text-primary">.</span></span>
         </a>
 
         {/* Desktop Nav */}

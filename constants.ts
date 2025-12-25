@@ -1,12 +1,21 @@
-import { Project, TechItem } from './types';
+import { Project, TechItem, HeroData, CustomSection } from './types';
 
-export const HERO_CONTENT = {
+// =================================================================================
+// 🟢 MASTER CONTROL FILE
+// All content on the website is controlled by this file.
+// Edit the sections below to update your portfolio.
+// =================================================================================
+
+// 1. HERO SECTION (Homepage Intro)
+export const HERO_CONTENT: HeroData = {
   name: "Shrijan Paudel",
   title: "Available for hire",
   greeting: "Hi, I'm Shrijan",
   bio: `I’m a 16-year-old self-taught developer from Nepal, exploring the world of code with curiosity and creativity. Learning is a journey—and thanks to the rise of AI, it's been an exciting way to transform imagination into reality. I enjoy building projects that feel alive, whether it's tools that make work easier or interfaces that inspire. With AI as my coding partner, I’m constantly experimenting, learning, and shaping ideas into products.`,
+  image: "" // Add an image URL here (e.g., "https://example.com/me.jpg") or leave empty for the abstract view
 };
 
+// 2. PROJECTS SECTION (Featured Projects)
 export const PROJECTS: Project[] = [
   {
     title: "PyVerse",
@@ -67,6 +76,7 @@ export const PROJECTS: Project[] = [
   }
 ];
 
+// 3. REPOSITORIES SECTION (Other Repos)
 export const OTHER_REPOS: Project[] = [
   {
     title: "Linux Mint Customization",
@@ -77,6 +87,18 @@ export const OTHER_REPOS: Project[] = [
   }
 ];
 
+// 4. CUSTOM SECTIONS (My Startups, Publications, etc)
+export const CUSTOM_SECTIONS: CustomSection[] = [
+  // Example:
+  // {
+  //   id: "startups",
+  //   title: "My Startups",
+  //   icon: "🚀",
+  //   items: []
+  // }
+];
+
+// 5. TECH STACK
 export const TECH_STACK: TechItem[] = [
   { name: "JavaScript", category: "Language" },
   { name: "TypeScript", category: "Language" },
