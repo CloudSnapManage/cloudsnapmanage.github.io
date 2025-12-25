@@ -12,7 +12,7 @@ export const HERO_CONTENT: HeroData = {
   title: "Available for hire",
   greeting: "Hi, I'm Shrijan",
   bio: `I’m a 16-year-old self-taught developer from Nepal, exploring the world of code with curiosity and creativity. Learning is a journey—and thanks to the rise of AI, it's been an exciting way to transform imagination into reality. I enjoy building projects that feel alive, whether it's tools that make work easier or interfaces that inspire. With AI as my coding partner, I’m constantly experimenting, learning, and shaping ideas into products.`,
-  image: "" // Add an image URL here (e.g., "https://example.com/me.jpg") or leave empty for the abstract view
+  image: "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/Me/Me%20(6).jpg" // Add an image URL here (e.g., "https://example.com/me.jpg") or leave empty for the abstract view
 };
 
 // 2. PROJECTS SECTION (Featured Projects)
@@ -21,9 +21,9 @@ export const PROJECTS: Project[] = [
     title: "PyVerse",
     description: "PyVerse is an immersive 3D interactive journey to master Python. Travel through the Constellation of Code, unlocking nodes from Variables to Advanced Metaprogramming with an AI-powered tutor.",
     tags: ["React", "TypeScript", "Vite", "R3F", "Three.js", "Tailwind CSS", "Gemini AI"],
-    codeUrl: "#",
-    demoUrl: "#",
-    image: "https://picsum.photos/seed/pyverse/600/400"
+    codeUrl: "https://github.com/CloudSnapManage/PyVerse",
+    demoUrl: "https://cloudsnapmanage.github.io/PyVerse/",
+    image: "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/Screenshots/Pyverse-S1.png"
   },
   {
     title: "MorphoConvert",
@@ -32,7 +32,7 @@ export const PROJECTS: Project[] = [
     status: "Under Development!",
     codeUrl: "#",
     demoUrl: "#",
-    image: "https://picsum.photos/seed/morpho/600/400"
+    image: "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/Screenshots/Morphoconvert-S1.png"
   },
   {
     title: "ScribbleCraft",
