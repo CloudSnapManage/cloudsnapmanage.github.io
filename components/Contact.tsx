@@ -17,14 +17,14 @@ const Contact: React.FC = () => {
           
           <div className="flex flex-col gap-4 w-full md:w-auto">
              <a 
-              href="mailto:contact@example.com"
+              href="mailto:std.shrijan@gmail.com"
               className="px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-all flex items-center justify-center gap-3 group"
             >
               <Mail className="group-hover:scale-110 transition-transform" />
               Email Me
             </a>
             <a 
-              href="https://github.com"
+              href="https://github.com/CloudSnapManage"
               target="_blank"
               rel="noreferrer"
               className="px-8 py-4 bg-surface border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition-all flex items-center justify-center gap-3 group"
