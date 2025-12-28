@@ -32,6 +32,24 @@ export const PROJECTS: Project[] = [
     "image": "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/Screenshots/Pyverse-S1.png"
   },
   {
+    "title": "Send Over P2P",
+    "description": "SendOver is a secure, direct peer-to-peer file transfer application running entirely in the browser. It enables users to share files of any size between devices without storing data on any intermediate servers.",
+    "tags": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "P2P Protocol: PeerJS (WebRTC)",
+      "Tailwind CSS",
+      "Lucide React"
+    ],
+    "codeUrl": "https://github.com/CloudSnapManage/SendOver",
+    "demoUrl": "https://cloudsnapmanage.github.io/SendOver/",
+    "image": "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/Screenshots/SendOver-S1.png"
+  },
+
+
+
+  {
     "title": "MorphoConvert",
     "description": "MorphoConvert is a modern, full-stack web application designed to make file conversion effortless. With a sleek user interface and powerful serverless backend, users can drag and drop files to convert images, audio, video, and documents instantly.",
     "tags": [
