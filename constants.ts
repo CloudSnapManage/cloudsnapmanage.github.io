@@ -46,9 +46,6 @@ export const PROJECTS: Project[] = [
     "demoUrl": "https://cloudsnapmanage.github.io/SendOver/",
     "image": "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/Screenshots/SendOver-S1.png"
   },
-
-
-
   {
     "title": "MorphoConvert",
     "description": "MorphoConvert is a modern, full-stack web application designed to make file conversion effortless. With a sleek user interface and powerful serverless backend, users can drag and drop files to convert images, audio, video, and documents instantly.",
@@ -144,6 +141,19 @@ export const PROJECTS: Project[] = [
     "codeUrl": "https://github.com/CloudSnapManage/BookVerse",
     "demoUrl": "https://cloudsnapmanage.github.io/BookVerse/",
     "image": "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/Screenshots/BookVerse-S1.png",
+    "status": "Live"
+  },
+  {
+    "title": "MoeStation 95 | Narrative Archive Hub",
+    "description": "MoeStation 95 is a curated personal blogging platform and digital sanctuary inspired by 1990s Japanese lo-fi aesthetics, CRT-era UI, and synthwave culture. It serves as a narrative bridge between nostalgic retro-tech and modern web performance.\n\n",
+    "tags": [
+      "React",
+      "Lucide React",
+      "TypeScript"
+    ],
+    "codeUrl": "https://github.com/CloudSnapManage/MoeStation-95",
+    "demoUrl": "https://cloudsnapmanage.github.io/MoeStation-95/",
+    "image": "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/Screenshots/Moestation95.png",
     "status": "Live"
   }
 ];
