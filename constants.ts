@@ -46,6 +46,23 @@ export const PROJECTS: Project[] = [
     "demoUrl": "https://cloudsnapmanage.github.io/SendOver/",
     "image": "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/Screenshots/SendOver-S1.png"
   },
+
+  {
+    "title": "DevLog | Log your development progress",
+    "description": "Dev Log is a simple and easy to use devlogging platform where users can log their development progress on several of their tasks.",
+    "tags": [
+      "TypeScript",
+      "Next.js",
+      "Tailwind CSS",
+      "Lexical Text Editor",
+      "DevLog"
+    ],
+    "codeUrl": "https://github.com/CloudSnapManage/DevLog",
+    "demoUrl": "https://cloudsnapmanage.github.io/DevLog",
+    "image": "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/DevLog.png",
+    "status": "Alpha Testing Released"
+  },
+  
   {
     "title": "MorphoConvert",
     "description": "MorphoConvert is a modern, full-stack web application designed to make file conversion effortless. With a sleek user interface and powerful serverless backend, users can drag and drop files to convert images, audio, video, and documents instantly.",
@@ -95,21 +112,7 @@ export const PROJECTS: Project[] = [
     "status": "Live"
   },
 
-  {
-    "title": "DevLog | Log your development progress",
-    "description": "Dev Log is a simple and easy to use devlogging platform where users can log their development progress on several of their tasks.",
-    "tags": [
-      "TypeScript",
-      "Next.js",
-      "Tailwind CSS",
-      "Lexical Text Editor",
-      "DevLog"
-    ],
-    "codeUrl": "https://github.com/CloudSnapManage/DevLog",
-    "demoUrl": "https://cloudsnapmanage.github.io/DevLog",
-    "image": "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/DevLog.png",
-    "status": "Alpha Testing Released"
-  },
+
   
   {
     "title": "VIBE",
