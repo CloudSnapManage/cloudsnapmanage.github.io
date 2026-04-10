@@ -155,9 +155,23 @@ export const PROJECTS: Project[] = [
     "demoUrl": "https://cloudsnapmanage.github.io/MoeStation-95/",
     "image": "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/Screenshots/Moestation95.png",
     "status": "Live"
+  },
+{
+    "title": "DevLog | Log your development progress",
+    "description": "Dev Log is a simple and easy to use devlogging platform where users can log their development progress on several of their tasks.",
+    "tags": [
+      "TypeScript",
+      "Next.js",
+      "Tailwind CSS",
+      "Lexical Text Editor",
+      "DevLog"
+    ],
+    "codeUrl": "https://github.com/CloudSnapManage/DevLog",
+    "demoUrl": "https://cloudsnapmanage.github.io/DevLog",
+    "image": "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/DevLog.png",
+    "status": "Alpha Testing Released"
   }
 ];
-
 // =================================================================================
 // 🟢 REPOSITORIES SECTION
 // =================================================================================
@@ -177,6 +191,9 @@ export const OTHER_REPOS: Project[] = [
     "status": "Released V1.0"
   }
 ];
+
+
+
 
 // =================================================================================
 // 🟢 CUSTOM SECTIONS
