@@ -7,7 +7,7 @@ export const HERO_CONTENT: HeroData = {
   "name": "Shrijan Paudel",
   "title": "Available for hire",
   "greeting": "Hi, I'm Shrijan",
-  "bio": "I’m a 16-year-old self-taught developer from Nepal, exploring the world of code with curiosity and creativity. Learning is a journey—and thanks to the rise of AI, it's been an exciting way to transform imagination into reality. I enjoy building projects that feel alive, whether it's tools that make work easier or interfaces that inspire. With AI as my coding partner, I’m constantly experimenting, learning, and shaping ideas into products.",
+  "bio": "I’m a 17-year-old self-taught developer from Nepal, exploring the world of code with curiosity and creativity. Learning is a journey—and thanks to the rise of AI, it's been an exciting way to transform imagination into reality. I enjoy building projects that feel alive, whether it's tools that make work easier or interfaces that inspire. With AI as my coding partner, I’m constantly experimenting, learning, and shaping ideas into products.",
   "image": "https://raw.githubusercontent.com/CloudSnapManage/site-images-cloudsnapmanage/refs/heads/master/Me/Me%20(6).jpg"
 };
 
